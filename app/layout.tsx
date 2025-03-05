@@ -1,13 +1,7 @@
 import type { Metadata } from "next";
 import { SpeedInsights } from "@vercel/speed-insights/next"
-import { DM_Mono, Barriecito, Delius_Swash_Caps, Eagle_Lake, Gloria_Hallelujah, Jost, Barrio } from "next/font/google";
+import { Barriecito, Delius_Swash_Caps, Eagle_Lake, Gloria_Hallelujah, Jost, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
-
-const dmMono = DM_Mono({
-  variable: "--font-dm-mono",
-  subsets: ["latin"],
-  weight: "300"
-});
 
 const barriecito = Barriecito({
   variable: "--font-barriecito",
@@ -39,8 +33,8 @@ const jost = Jost({
   weight: "400"
 });
 
-const barrio = Barrio({
-  variable: "--font-barrio",
+const ibmPlexMono = IBM_Plex_Mono({
+  variable: "--font-ibm-plex-mono",
   subsets: ["latin"],
   weight: "400"
 });
@@ -57,7 +51,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${dmMono.variable} ${barriecito.variable} ${deliusSwashCaps.variable} ${eagleLake.variable} ${gloriaHallelujah.variable} ${jost.variable} ${barrio.variable}`}>
+      <head>
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+      </head>
+      <body className={`${barriecito.variable} ${deliusSwashCaps.variable} ${eagleLake.variable} ${gloriaHallelujah.variable} ${jost.variable} ${ibmPlexMono.variable}`}>
         {children}
         <SpeedInsights />
       </body>

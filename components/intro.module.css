@@ -1,0 +1,88 @@
+.intro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+    animation: fadeOut 0.2s linear 4.5s forwards;
+}
+
+@media screen and (min-width: 768px) {
+    .intro {
+        flex-direction: row;
+        gap: 20px;
+    }  
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+    }
+}
+
+.intro p {
+    font-size: 70px;
+    color: #000;
+    animation: fontShuffle 1s linear 3;
+    font-family: var(--font-ibm-plex-mono);
+}
+
+@keyframes fontShuffle {
+    0% {
+        font-family: var(--font-ibm-plex-mono)
+    }
+
+    20% {
+        font-family: var(--font-delius-swash-caps);
+    }
+
+    40% {
+        font-family: var(--font-eagle-lake);
+    }
+
+    60% {
+        font-family: var(--font-gloria-hallelujah);
+    }
+
+    80% {
+        font-family: var(--font-barriecito);
+    }
+
+    100% {
+        font-family: var(--font-ibm-plex-mono);
+    }
+}
+
+@media (max-width: 786px) {
+    .intro p:nth-of-type(2) {
+        height: 0;
+        opacity: 0;
+        animation: push-height 0.3s ease-in-out 3.5s forwards;
+    }
+
+    @keyframes push-height {
+        to {
+            height: 80px;
+            opacity: 1;
+        }
+    }
+}
+
+@media (min-width: 787px) {
+    .intro p:nth-of-type(2) {
+        width: 0;
+        opacity: 0;
+        animation: push-width 0.3s ease-in-out 3.5s forwards;
+    }
+
+    @keyframes push-width {
+        to {
+            width: 100%;
+            opacity: 1;
+        }
+    }
+}
