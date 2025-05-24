@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Jersey_10 } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next"
 import Overlay from "@/components/overlay";
 import "./globals.css";
 
@@ -30,6 +31,7 @@ export default function RootLayout({
         {children}
         <SpeedInsights />
         <Overlay />
+        <Analytics />
       </body>
     </html>
   );
