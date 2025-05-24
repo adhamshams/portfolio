@@ -1,0 +1,259 @@
+.icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    gap: 10px;
+    cursor: pointer;
+    height: 75px;
+    width: 75px;
+    margin-top: 3.5vh;
+    margin-left: 1.5vw;
+}
+
+.icon:hover {
+    background-color: rgba(255, 255, 255, .2);
+}
+
+.icon h2 {
+    font-size: 20px;
+}
+
+.container {
+    z-index: 1000;
+    position: absolute;
+    top: 20%;
+    left: 40%;
+    width: 50vw;
+    height: 60vh;
+    border: 1px solid #025aee;
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+}
+
+.nav {
+    display: flex;
+    background-color: #025aee;
+    width: 100%;
+    height: 6%;
+    align-items: center;
+    cursor: grab;
+    user-select: none;
+}
+
+.title {
+    color: white;
+    font-size: 16px;
+    margin-left: 4px;
+}
+
+.close {
+    margin-left: auto;
+    margin-right: 4px;
+    color: white;
+    background-color: #d7523a;
+    height: 75%;
+    border: 1px solid #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding-left: 8px;
+    padding-right: 8px;
+    border-radius: 4px;
+}
+
+.close:hover {
+    background-color: #ff6b5c;
+}
+
+.grabbing {
+    cursor: grabbing !important;
+}
+
+.content {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+        "menu"
+        "canvas"
+        "colorPicker"
+        "tip";
+}
+
+.menu {
+    grid-area: menu;
+    display: flex;
+    align-items: center;
+    background-color: #eceadb;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 4px;
+    width: 100%;
+    color: #000;
+    gap: 12px;
+    border-bottom: 2px solid #aaaa9d;
+    user-select: none;
+}
+
+.canvasContainer {
+    grid-area: canvas;
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+
+.toolboxGrid {
+    height: 100%;
+    background-color: #eceadb;
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: center;
+    justify-content: space-around;
+    padding: 4px;
+    gap: 8px;
+}
+
+.tool {
+    padding: 8px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: background 0.2s, border 0.2s;
+}
+
+.tool:hover {
+    background: #fefef1;
+    border: 1px solid #909493;
+}
+
+.active {
+    background: #fefef1;
+    border: 1px solid #909493;
+}
+
+.canvas {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    box-shadow: inset 5px 5px 10px #868485;
+    background: linear-gradient(-90deg, rgba(0, 0, 0, .02) 1px, transparent 0), linear-gradient(rgba(0, 0, 0, .02) 1px, transparent 0), linear-gradient(-90deg, rgba(0, 0, 0, .02) 1px, transparent 0), linear-gradient(rgba(0, 0, 0, .02) 1px, transparent 0), linear-gradient(transparent 7.5px, #f8f8f8 0, #f8f8f8 195px, transparent 0), linear-gradient(-90deg, hsla(0, 0%, 67%, .3) 1px, transparent 0), linear-gradient(-90deg, transparent 7.5px, #f8f8f8 0, #f8f8f8 195px, transparent 0), linear-gradient(hsla(0, 0%, 67%, .3) 1px, transparent 0), #f8f8f8;
+    background-size: 10px 10px, 10px 10px, 200px 200px, 200px 200px, 200px 200px, 200px 200px, 200px 200px, 200px 200px;
+    background-position: calc(50% + 5px) 0, calc(50% + 5px) 0, calc(50% + 100px) 0, calc(50% + 100px) 0, calc(50% + 100px) 0, calc(50% + 100px) 0, calc(50% + 100px) 0, calc(50% + 100px) 0;
+}
+
+.canvas svg {
+    width: 100%;
+    height: 100%;
+}
+
+.canvas svg path {
+    stroke-dasharray: 2000;
+    stroke-dashoffset: 2000;
+}
+
+.canvas svg path:nth-of-type(1) {
+    animation: dash 3s linear forwards;
+}
+
+.canvas svg path:nth-of-type(2) {
+    animation: dash 5s linear 1.5s forwards;
+}
+
+.canvas svg path:nth-of-type(3) {
+    animation: dash 5s linear 2s forwards;
+}
+
+.canvas svg path:nth-of-type(4) {
+    animation: dash 5s linear 2.5s forwards;
+}
+
+.canvas svg path:nth-of-type(5) {
+    animation: dash 5s linear 3s forwards;
+}
+
+.canvas svg path:nth-of-type(6) {
+    animation: dash 5s linear 3.5s forwards;
+}
+
+.canvas svg path:nth-of-type(7) {
+    animation: dash 5s linear 4s forwards;
+}
+
+.canvas svg path:nth-of-type(8) {
+    animation: dash 10s linear 4.5s forwards;
+}
+
+.canvas svg path:nth-of-type(9) {
+    animation: dash 10s linear 5.5s forwards;
+}
+
+.canvas svg path:nth-of-type(10) {
+    animation: dash 10s linear 7s forwards;
+}
+
+.canvas svg path:nth-of-type(11) {
+    animation: dash 10s linear 16.5s forwards;
+}
+
+@keyframes dash {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+.colorPicker {
+    grid-area: colorPicker;
+    display: flex;
+    align-items: center;
+    background-color: #eceadb;
+    height: 12%;
+    width: 100%;
+    border-top: 2px solid #aaaa9d;
+}
+
+.selectedColor {
+    padding: 10px;
+    background-color: #ebe8de;
+    box-shadow: inset 0px 0px 5px #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 4px;
+}
+
+.colorBox {
+    padding: 10px;
+    background-color: #000;
+    border: 2px solid #ece8e3;
+}
+
+.colorPalette {
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 4px;
+    margin-left: 4px;
+}
+
+.color{
+    padding: 10px;
+    box-shadow: inset 0px 0px 5px #000;
+}
+
+.tip {
+    grid-area: tip;
+    display: flex;
+    align-items: center;
+    padding-left: 4px;
+    background-color: #eceadb;
+    border-top: 2px solid #aaaa9d;
+    height: 6%;
+    width: 100%;
+    color: #000;
+}

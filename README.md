@@ -42,7 +42,7 @@ Ensure you have the following installed:
 
   ```bash
   git clone https://github.com/adhamshams/portfolio.git
-  cd portfolio-nextjs
+  cd portfolio
   ```
 2. Install dependencies:
    
