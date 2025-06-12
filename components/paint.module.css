@@ -73,75 +73,11 @@
     cursor: grabbing !important;
 }
 
-.content {
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-    grid-template-areas:
-        "menu"
-        "canvas"
-        "colorPicker"
-        "tip";
-}
-
-.menu {
-    grid-area: menu;
-    display: flex;
-    align-items: center;
-    background-color: #eceadb;
-    padding-top: 4px;
-    padding-bottom: 4px;
-    padding-left: 4px;
-    width: 100%;
-    color: #000;
-    gap: 12px;
-    border-bottom: 2px solid #aaaa9d;
-    user-select: none;
-}
-
-.canvasContainer {
-    grid-area: canvas;
+.canvas {
+    position: relative;
     display: flex;
     align-items: center;
     flex: 1;
-}
-
-.toolboxGrid {
-    height: 100%;
-    background-color: #eceadb;
-    display: grid;
-    grid-template-columns: auto auto;
-    align-items: center;
-    justify-content: space-around;
-    padding: 4px;
-    gap: 8px;
-}
-
-.tool {
-    padding: 8px;
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    border: 1px solid transparent;
-    transition: background 0.2s, border 0.2s;
-}
-
-.tool:hover {
-    background: #fefef1;
-    border: 1px solid #909493;
-}
-
-.active {
-    background: #fefef1;
-    border: 1px solid #909493;
-}
-
-.canvas {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
     box-shadow: inset 5px 5px 10px #868485;
     background: linear-gradient(-90deg, rgba(0, 0, 0, .02) 1px, transparent 0), linear-gradient(rgba(0, 0, 0, .02) 1px, transparent 0), linear-gradient(-90deg, rgba(0, 0, 0, .02) 1px, transparent 0), linear-gradient(rgba(0, 0, 0, .02) 1px, transparent 0), linear-gradient(transparent 7.5px, #f8f8f8 0, #f8f8f8 195px, transparent 0), linear-gradient(-90deg, hsla(0, 0%, 67%, .3) 1px, transparent 0), linear-gradient(-90deg, transparent 7.5px, #f8f8f8 0, #f8f8f8 195px, transparent 0), linear-gradient(hsla(0, 0%, 67%, .3) 1px, transparent 0), #f8f8f8;
     background-size: 10px 10px, 10px 10px, 200px 200px, 200px 200px, 200px 200px, 200px 200px, 200px 200px, 200px 200px;
@@ -230,20 +166,21 @@
 
 .colorBox {
     padding: 10px;
-    background-color: #000;
     border: 2px solid #ece8e3;
 }
 
 .colorPalette {
     display: grid;
+    grid-auto-flow: column;
     grid-template-rows: auto auto;
     grid-template-columns: repeat(8, 1fr);
     gap: 4px;
     margin-left: 4px;
 }
 
-.color{
+.color {
     padding: 10px;
+    cursor: pointer;
     box-shadow: inset 0px 0px 5px #000;
 }
 
