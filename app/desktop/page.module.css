@@ -6,4 +6,5 @@
     height: 100dvh;
     display: flex;
     flex-direction: column;
+    user-select: none;
 }

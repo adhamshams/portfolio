@@ -9,8 +9,8 @@ export default function Home() {
       <div className={styles.content}>
         <div className={styles.metaData}>
           <Image src="/sun.webp" alt="sun" width={80} height={80} />
-          <h2>Portfolio 95</h2>
-          <p>To begin, click my user name</p>
+          <h2>Portfolio 01&apos;</h2>
+          <p>To begin, click your user name</p>
         </div>
         <div className={styles.seperator} />
         <Link href="/desktop" className={styles.usernameContainer}>
