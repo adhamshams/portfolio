@@ -33,15 +33,15 @@
   flex-direction: column;
   align-items: flex-end;
   margin-right: 32px;
+  gap: 12px;
 }
 
 .metaData h2 {
-  font-size: 28px;
+  font-size: 20px;
 }
 
 .metaData p {
-  margin-top: 8px;
-  font-size: 24px;
+  font-size: 16px;
 }
 
 .usernameContainer {
@@ -66,8 +66,7 @@
 }
 
 .usernameContainer p {
-  font-weight: 400;
-  font-size: 24px;
+  font-size: 16px;
 }
 
 .seperator {
@@ -90,7 +89,7 @@
 }
 
 .footer p {
-  font-size: 16px;
+  font-size: 12px;
 }
 
 .turnOffContainer {
@@ -106,5 +105,5 @@
 }
 
 .turnOffContainer h2 {
-  font-size: 20px;
+  font-size: 16px;
 }

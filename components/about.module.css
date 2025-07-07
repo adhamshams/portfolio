@@ -4,10 +4,10 @@
     align-items: center;
     justify-content: center;
     color: #fff;
-    gap: 10px;
+    gap: 12px;
     cursor: pointer;
-    height: 75px;
-    width: 75px;
+    height: 78px;
+    width: 78px;
     margin-top: 3.5vh;
     margin-left: 1.5vw;
     user-select: none;
@@ -18,7 +18,7 @@
 }
 
 .icon h2 {
-    font-size: 20px;
+    font-size: 12px;
 }
 
 .container {
@@ -29,6 +29,7 @@
     width: 50vw;
     height: 60vh;
     border: 1px solid #025aee;
+    background-color: #025aee;
     display: flex;
     flex-direction: column;
     border-radius: 8px;
@@ -36,23 +37,21 @@
 
 .nav {
     display: flex;
-    background-color: #025aee;
     width: 100%;
-    height: 6%;
     align-items: center;
     cursor: grab;
     user-select: none;
+    padding: 0 4px;
 }
 
 .title {
     color: white;
-    font-size: 16px;
+    font-size: 12px;
     margin-left: 4px;
 }
 
 .close {
     margin-left: auto;
-    margin-right: 4px;
     color: white;
     background-color: #d7523a;
     height: 75%;
@@ -60,9 +59,9 @@
     cursor: pointer;
     display: flex;
     align-items: center;
-    padding-left: 8px;
-    padding-right: 8px;
+    padding: 4px 8px;
     border-radius: 4px;
+    font-size: 12px;
 }
 
 .close:hover {
@@ -76,7 +75,7 @@
 .canvas {
     display: flex;
     flex-direction: column;
-    background-color: #f00;
+    background-color: #fff;
     height: 5000px;
     overflow-y: scroll;
 }

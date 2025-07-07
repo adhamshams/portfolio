@@ -8,7 +8,7 @@ export default function Home() {
       <div className={styles.header} />
       <div className={styles.content}>
         <div className={styles.metaData}>
-          <Image src="/sun.webp" alt="sun" width={80} height={80} />
+          <Image src="/sun.webp" alt="sun" width={65} height={65} />
           <h2>Portfolio 01&apos;</h2>
           <p>To begin, click your user name</p>
         </div>
