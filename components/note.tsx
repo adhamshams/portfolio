@@ -47,7 +47,7 @@ export default function Note() {
             className={`${styles.container} ${isDragging ? styles.grabbing : ""}`}
         >
             <h4>TO DO LIST:</h4>
-            <p>-finish my master's degree</p>
+            <p>-finish my master&apos;s degree</p>
             <p className={styles.complete}>-find the best matcha in cairo</p>
             <p>-learn from the best</p>
             <p>-complete my Letterboxd watchlist</p>

@@ -73,8 +73,8 @@ export default function About() {
               <p>
                 Hello! My name is Adham Shams, and I am a <span>?????</span> who loves
                 to play in product design, ui/ux, front-end dev, and ways to make the web
-                a more fun place. Currently pursuing my master’s in Human-Computer Interaction at the GUC.
-                At my core, I've always been curious about the world of
+                a more fun place. Currently pursuing my master&apos;s in Human-Computer Interaction at the GUC.
+                At my core, I&apos;ve always been curious about the world of
                 design and driven by a passion for creating meaningful digital experiences.
                 Once I discovered the limitless creative potential
                 of code, I found myself thriving in that playful, ever-evolving space where
@@ -86,7 +86,7 @@ export default function About() {
                 That playful curiosity still drives me today. This space is my way of keeping that spirit alive.
               </p>
               <p>
-                As you scroll through this document, you’ll see
+                As you scroll through this document, you&apos;ll see
                 scattered moments (frames from films, glimpses of architecture, random images I stumbled upon online, or snapshots from my own life)
                 that have inspired my work or shaped who I am today. Some are meaningful, some are aimless, but all are part of my journey.
               </p>
