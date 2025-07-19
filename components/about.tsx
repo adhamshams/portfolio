@@ -84,8 +84,8 @@ export default function About() {
               <p>
                 One of my goals is to become a <strong>design engineer</strong>. 
                 Design Engineers work across the company, contributing to branding, marketing, product development, and the internal design system. 
-                They sit at the intersection of form and function: by bringing design ideas to life in the browser, bridging the gap between design and development teams, and prototyping with real code instead of static mockups.
-                It&apos;s a role I admire deeply, and is one that is starting to gain popularity especially in companies like Vercel. However, it&apos;s still not very common or widely understood here in Egypt. I hope to help change 
+                They sit at the intersection of form and function: by bringing design ideas to life, bridging the gap between design and development teams, and prototyping with real code instead of static mockups.
+                It&apos;s a role I admire deeply, and is one that is starting to gain popularity especially in companies like Vercel. I recommend reading their blog post about it <a href="https://vercel.com/blog/design-engineering-at-vercel">here</a>. However, it&apos;s still not very common or widely understood here in Egypt. I hope to help change 
                 that by showing what&apos;s possible when design thinking and engineering craft come together.
               </p>
               <p>

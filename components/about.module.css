@@ -87,6 +87,11 @@
     margin-top: 12px;
 }
 
+.about a {
+    color: #025aee;
+    text-decoration: underline;
+}
+
 .wordart {
     object-fit: contain;
     animation-name: moveInLeft;
