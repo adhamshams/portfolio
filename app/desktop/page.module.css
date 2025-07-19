@@ -1,10 +1,10 @@
 .page {
-    background-image: url('/background.jpg');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
     height: 100dvh;
     display: flex;
     flex-direction: column;
     user-select: none;
+}
+
+.backgroundImage {
+    z-index: -1;
 }

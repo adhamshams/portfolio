@@ -69,9 +69,10 @@ export default function About() {
                 width={300}
                 height={150}
                 className={styles.wordart}
+                priority
               />
               <p>
-                Hello! My name is Adham Shams, and I am a <span>?????</span> who loves
+                Hello! My name is Adham Shams, and I am a <strong><span>?????</span></strong> who loves
                 to play in product design, ui/ux, front-end dev, and ways to make the web
                 a more fun place. Currently pursuing my master&apos;s in Human-Computer Interaction at the GUC.
                 At my core, I&apos;ve always been curious about the world of
@@ -81,14 +82,21 @@ export default function About() {
                 technology and art collide.
               </p>
               <p>
+                One of my goals is to become a <strong>design engineer</strong>. 
+                Design Engineers work across the company, contributing to branding, marketing, product development, and the internal design system. 
+                They sit at the intersection of form and function: by bringing design ideas to life in the browser, bridging the gap between design and development teams, and prototyping with real code instead of static mockups.
+                It&apos;s a role I admire deeply, and is one that is starting to gain popularity especially in companies like Vercel. However, it&apos;s still not very common or widely understood here in Egypt. I hope to help change 
+                that by showing what&apos;s possible when design thinking and engineering craft come together.
+              </p>
+              <p>
                 This portfolio is wrapped in a Windows XP theme which is nostalgic and deeply personal.
                 It nods to the early 2000s, when I had unfiltered access to a family computer and endless time to explore.
                 That playful curiosity still drives me today. This space is my way of keeping that spirit alive.
               </p>
               <p>
                 As you scroll through this document, you&apos;ll see
-                scattered moments (frames from films, glimpses of architecture, random images I stumbled upon online, or snapshots from my own life)
-                that have inspired my work or shaped who I am today. Some are meaningful, some are aimless, but all are part of my journey.
+                scattered images, videos, and snippets of my life
+                that have inspired my work or shaped who I am today. Some are meaningful, some are random, but all are part of my journey.
               </p>
               <Masonry columns={3} spacing={1}>
                 <div className={styles.masonryItem}>
@@ -110,16 +118,25 @@ export default function About() {
                   <img src={"/stitch.jpg"} alt="Stitch" />
                 </div>
                 <div className={styles.masonryItem}>
+                  <video autoPlay loop muted>
+                    <source src={"/tiktok.mp4"} type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+                <div className={styles.masonryItem}>
                   <img src={"/metro.webp"} alt="Metro" />
                 </div>
                 <div className={styles.masonryItem}>
-                  <img src={"/cup.webp"} alt="Cup" />
+                  <img src={"/hero.gif"} alt="Hero" />
                 </div>
                 <div className={styles.masonryItem}>
                   <img src={"/hamster.jpg"} alt="Hamster" />
                 </div>
                 <div className={styles.masonryItem}>
                   <img src={"/images.jpeg"} alt="Stranded" />
+                </div>
+                <div className={styles.masonryItem}>
+                  <img src={"/jarir.jpg"} alt="Jeddah" />
                 </div>
                 <div className={styles.masonryItem}>
                   <img src={"/gunners.jpg"} alt="Gunners" />
@@ -131,10 +148,13 @@ export default function About() {
                   <img src={"/battlefield.jpg"} alt="Battlefield" />
                 </div>
                 <div className={styles.masonryItem}>
-                  <img src={"/chungking.jpg"} alt="Chungking" />
+                  <img src={"https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExdjZuNGJlOXIyZHVmbWdvN2JxMzhzb3NmNTRveXRqMzV5NXlldDNvcyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/SupA7OgPcAI0g/giphy.gif"} alt="Chungking" />
                 </div>
                 <div className={styles.masonryItem}>
                   <img src={"/quote.jpg"} alt="Quote" />
+                </div>
+                <div className={styles.masonryItem}>
+                  <img src={"https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExODc0dTFvZ3JmMGV4amVpNW9uZXM1aXplZXBpY3liNWxiMTQxYWQ1biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/iFqOpuQDLgzEiKiWTi/giphy.gif"} alt="Chungking" />
                 </div>
                 <div className={styles.masonryItem}>
                   <img src={"/zawya.jpg"} alt="Zawya" />
@@ -143,10 +163,13 @@ export default function About() {
                   <img src={"/berlin.png"} alt="Berlin" />
                 </div>
                 <div className={styles.masonryItem}>
+                  <img src={"https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3drdnd2cXhyZngzcXJ5ZWJkY3J4N3B3aWJ0dHI4cHoxamFseXc4NiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/M4QtKS06zmJ2g/giphy.gif"} alt="Chungking" />
+                </div>
+                <div className={styles.masonryItem}>
                   <img src={"/blonde.jpg"} alt="Blonde" />
                 </div>
                 <div className={styles.masonryItem}>
-                  <img src={"/jeddah.jpg"} alt="Jeddah" />
+                  <img src={"https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExcWVkNHg1ZWticWQxOTBnY21tdjUycDlubmt5dzVib25kMnNvem5reSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l3fZPYrlEGoSLvq9O/giphy.gif"} alt="Chungking" />
                 </div>
               </Masonry>
             </div>

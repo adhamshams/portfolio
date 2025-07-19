@@ -90,24 +90,16 @@
 .wordart {
     object-fit: contain;
     animation-name: moveInLeft;
-    animation-duration: 2s;
+    animation-duration: 1.5s;
     animation-timing-function: ease-out;
 }
 
 @keyframes moveInLeft {
     0% {
-        opacity: 0;
-        transform: translateX(-100px) rotate(-50deg);
-    }
-    60% {
-        transform: rotate(120deg);
-    }
-    80% {
-        transform: translateX(50px);
+        transform: rotateY(180deg);
     }
     100% {
-        opacity: 1;
-        transform: translate(0);
+        transform: rotateY(0deg);
     }
 }
 

@@ -49,6 +49,7 @@ export default function Note() {
             <h4>TO DO LIST:</h4>
             <p>-finish my master&apos;s degree</p>
             <p className={styles.complete}>-find the best matcha in cairo</p>
+            <p>-make this portfolio mobile responsive</p>
             <p>-learn from the best</p>
             <p>-complete my Letterboxd watchlist</p>
             <p>-become president</p>
