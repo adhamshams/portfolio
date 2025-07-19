@@ -73,15 +73,60 @@
 }
 
 .canvas {
+    background-color: #fff;
+    overflow: scroll;
+    flex: 1;
+}
+
+.about {
     display: flex;
     flex-direction: column;
-    background-color: #fff;
-    height: 5000px;
-    overflow-y: scroll;
+    align-items: center;
+    gap: 12px;
+    padding: 0 20px;
+    margin-top: 12px;
 }
 
 .wordart {
-    margin: 0 auto;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    object-fit: contain;
+    animation-name: moveInLeft;
+    animation-duration: 2s;
+    animation-timing-function: ease-out;
+}
+
+@keyframes moveInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-100px) rotate(-50deg);
+    }
+    60% {
+        transform: rotate(120deg);
+    }
+    80% {
+        transform: translateX(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+.about span {
+    background-color: sandybrown;
+}
+
+.about p {
+    text-indent: 20px;
+}
+
+.masonryItem {
+    display: block;
+    width: 100%;
+}
+
+.masonryItem img,
+.masonryItem video {
+    display: block;
+    width: 100%;
+    height: auto;
 }

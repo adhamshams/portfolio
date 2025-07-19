@@ -1,0 +1,25 @@
+.container {
+    z-index: 999;
+    position: absolute;
+    bottom: 10%;
+    left: 3%;
+    width: 20vw;
+    height: 20vw;
+    background-color: #fef49b;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: grab;
+    user-select: none;
+    padding: 12px;
+    gap: 8px;
+}
+
+.grabbing {
+    cursor: grabbing !important;
+}
+
+.complete {
+    text-decoration: line-through;
+    color: #888;
+}
