@@ -3,7 +3,7 @@ import { useRef, useState, useEffect } from "react";
 
 import styles from "./about.module.css";
 import Image from "next/image";
-import Masonry from "@mui/lab/Masonry";
+import Masonry from '@mui/lab/Masonry';
 import { useZIndex } from "@/contexts/ZIndexContext";
 
 export default function About() {
@@ -51,7 +51,7 @@ export default function About() {
       const newZIndex = getNextZIndex();
       boxRef.current.style.zIndex = newZIndex.toString();
     }
-  }, [visible, getNextZIndex]);
+  }, [visible]);
 
   return (
     <div>
@@ -60,7 +60,7 @@ export default function About() {
         <h2>About Me</h2>
       </div>
       {visible && (
-        <div ref={boxRef} onMouseDown={(e) => {
+        <div ref={boxRef} onMouseDown={() => {
           // Bring this component to front
           const newZIndex = getNextZIndex();
           boxRef.current && (boxRef.current.style.zIndex = newZIndex.toString());
