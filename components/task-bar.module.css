@@ -5,7 +5,6 @@
     bottom: 0;
     left: 0;
     background-color: #2462dc;
-    border-top: 4px solid #3883c7;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -26,6 +25,7 @@
     cursor: pointer;
     padding-left: 24px;
     padding-right: 24px;
+    position: relative;
 }
 
 .startContainer:hover {
@@ -35,6 +35,92 @@
 .startContainer h2 {
     color: #fff;
     font-size: 16px;
+}
+
+.startMenu {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    width: 300px;
+    background: linear-gradient(to bottom, #245ddc 0%, #245ddc 60px, #ffffff 60px, #ffffff 100%);
+    border: 2px solid #0831d9;
+    z-index: 2000;
+    animation: slideUp 0.2s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.startMenuHeader {
+    height: 60px;
+    padding: 8px 12px;
+    border-bottom: 1px solid #c5c5c5;
+}
+
+.userSection {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    height: 100%;
+}
+
+.profileImage {
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+.userInfo h3 {
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.userInfo p {
+    color: #e6f0ff;
+    font-size: 11px;
+    margin: 2px 0 0 0;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.startMenuContent {
+    padding: 8px 0;
+    background-color: #ffffff;
+}
+
+.menuItem {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 12px;
+    color: #000000;
+    transition: background-color 0.1s ease;
+}
+
+.menuItem:hover {
+    background-color: #316ac5;
+    color: #ffffff;
+}
+
+.menuItem span {
+    font-size: 11px;
+}
+
+.menuSeparator {
+    height: 1px;
+    background-color: #c5c5c5;
+    margin: 4px 12px;
 }
 
 .timeContainer {
