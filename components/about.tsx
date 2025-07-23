@@ -3,7 +3,7 @@ import { useRef, useState, useEffect } from "react";
 
 import styles from "./about.module.css";
 import Image from "next/image";
-import Masonry from '@mui/lab/Masonry';
+import Masonry from "@mui/lab/Masonry";
 import { useZIndex } from "@/contexts/ZIndexContext";
 
 export default function About() {
@@ -51,7 +51,7 @@ export default function About() {
       const newZIndex = getNextZIndex();
       boxRef.current.style.zIndex = newZIndex.toString();
     }
-  }, [visible]);
+  }, [visible, getNextZIndex]);
 
   return (
     <div>
@@ -99,7 +99,7 @@ export default function About() {
                 doing my Master&apos;s in Human-Computer Interaction at the GUC, chasing the magic where
                 design meets code. </p> <p> My dream? To become a <strong>design engineer</strong>, the
                   kind that builds ideas with code, bridges design and dev teams, and helps shape everything
-                  from product to brand. It's a role that's picking up steam at places like <a href="https://vercel.com/blog/design-engineering-at-vercel">Vercel</a>, and I hope to
+                  from product to brand. It&apos;s a role that&apos;s picking up steam at places like <a href="https://vercel.com/blog/design-engineering-at-vercel">Vercel</a>, and I hope to
                 help push it forward. </p> <p> This XP-themed portfolio is a love letter to my early days
                   on a family PC, where curiosity ran wild. That playful spirit still fuels everything I do. </p>
               <p> As you scroll, you&apos;ll stumble upon snapshots of my life, some meaningful, some random, but all
