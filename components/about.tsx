@@ -60,7 +60,7 @@ export default function About() {
         <h2>About Me</h2>
       </div>
       {visible && (
-        <div ref={boxRef} onMouseDown={() => {
+        <div ref={boxRef} onMouseDown={(e) => {
           // Bring this component to front
           const newZIndex = getNextZIndex();
           boxRef.current && (boxRef.current.style.zIndex = newZIndex.toString());
