@@ -23,8 +23,8 @@
 
 .container {
     position: absolute;
-    top: 20%;
-    left: 40%;
+    top: 5%;
+    right: 3%;
     width: 50vw;
     height: 60vh;
     border: 1px solid #025aee;

@@ -112,11 +112,11 @@ export default function Minesweeper() {
     }, [visible, board.length]);
 
     useEffect(() => {
-    if (visible && boxRef.current) {
-      const newZIndex = getNextZIndex();
-      boxRef.current.style.zIndex = newZIndex.toString();
-    }
-  }, [visible]);
+        if (visible && boxRef.current) {
+            const newZIndex = getNextZIndex();
+            boxRef.current.style.zIndex = newZIndex.toString();
+        }
+    }, [visible]);
 
     // Reveal cell and adjacent empty cells
     const revealCell = useCallback((row: number, col: number) => {
@@ -245,10 +245,6 @@ export default function Minesweeper() {
         const box = boxRef.current;
         if (!box) return;
 
-        // Bring this component to front
-        const newZIndex = getNextZIndex();
-        box.style.zIndex = newZIndex.toString();
-
         const rect = box.getBoundingClientRect();
         setOffset({
             x: e.clientX - rect.left,
@@ -264,7 +260,11 @@ export default function Minesweeper() {
                 <h2>Minesweeper</h2>
             </div>
             {visible && (
-                <div ref={boxRef} className={styles.container}>
+                <div ref={boxRef} onMouseDown={() => {
+                    // Bring this component to front
+                    const newZIndex = getNextZIndex();
+                    boxRef.current && (boxRef.current.style.zIndex = newZIndex.toString());
+                }} className={styles.container}>
                     <div
                         onMouseDown={handleMouseDown}
                         className={`${styles.nav} ${isDragging ? styles.grabbing : ""}`}

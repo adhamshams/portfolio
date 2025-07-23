@@ -38,11 +38,7 @@ export default function Paint() {
   const handleMouseDown = (e: { clientX: number; clientY: number }) => {
     const box = boxRef.current;
     if (!box) return;
-    
-    // Bring this component to front
-    const newZIndex = getNextZIndex();
-    box.style.zIndex = newZIndex.toString();
-    
+
     const rect = box.getBoundingClientRect();
     setOffset({
       x: e.clientX - rect.left,
@@ -65,14 +61,18 @@ export default function Paint() {
         <h2>Paint</h2>
       </div>
       {visible && (
-        <div ref={boxRef} className={styles.container}>
+        <div ref={boxRef} onMouseDown={() => {
+          // Bring this component to front
+          const newZIndex = getNextZIndex();
+          boxRef.current && (boxRef.current.style.zIndex = newZIndex.toString());
+        }} className={styles.container}>
           <div
             onMouseDown={handleMouseDown}
             className={`${styles.nav} ${isDragging ? styles.grabbing : ""}`}
           >
             <Image src={"/paint.webp"} alt="Logo" width={20} height={20} />
             <h2 className={styles.title}>Me - Paint</h2>
-            <div className={styles.close} 
+            <div className={styles.close}
               onClick={(e) => {
                 e.stopPropagation();
                 setVisible(false);
