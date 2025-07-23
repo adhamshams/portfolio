@@ -46,9 +46,9 @@ export default function TaskBar() {
                 
                 <div className={styles.menuSeparator}></div>
                 
-                <a href="/off" className={styles.menuItem}>
+                <a href="/" className={styles.menuItem}>
                   <Image src={"/off-icon.png"} alt="About" width={16} height={16} />
-                  <span>Turn Off Portfolio</span>
+                  <span>Sign Out</span>
                 </a>
               </div>
             </div>

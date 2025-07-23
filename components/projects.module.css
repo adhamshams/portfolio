@@ -87,19 +87,21 @@
 .project {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     width: 100%;
     gap: 16px;
 }
 
 .project img {
     width: 50%;
-    height: auto;
+    height: 50%;
     object-fit: contain;
 }
 
 .projectInfo {
     display: flex;
     flex-direction: column;
+    width: 50%;
     gap: 8px;
 }
 
