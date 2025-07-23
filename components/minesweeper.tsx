@@ -198,16 +198,12 @@ export default function Minesweeper() {
         if (board.length === 0 || gameStatus !== 'Playing') return;
 
         let revealedCount = 0;
-        let correctFlags = 0;
 
         for (let row = 0; row < ROWS; row++) {
             for (let col = 0; col < COLS; col++) {
                 const cell = board[row][col];
                 if (cell.isRevealed && !cell.isMine) {
                     revealedCount++;
-                }
-                if (cell.isFlagged && cell.isMine) {
-                    correctFlags++;
                 }
             }
         }
