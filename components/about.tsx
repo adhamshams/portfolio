@@ -4,12 +4,14 @@ import { useRef, useState, useEffect } from "react";
 import styles from "./about.module.css";
 import Image from "next/image";
 import Masonry from '@mui/lab/Masonry';
+import { useZIndex } from "@/contexts/ZIndexContext";
 
 export default function About() {
   const boxRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [offset, setOffset] = useState({ x: 0, y: 0 });
   const [visible, setVisible] = useState(false);
+  const { getNextZIndex } = useZIndex();
 
   useEffect(() => {
     const handleMouseMove = (e: { clientX: number; clientY: number }) => {
@@ -35,6 +37,11 @@ export default function About() {
   const handleMouseDown = (e: { clientX: number; clientY: number }) => {
     const box = boxRef.current;
     if (!box) return;
+    
+    // Bring this component to front
+    const newZIndex = getNextZIndex();
+    box.style.zIndex = newZIndex.toString();
+    
     const rect = box.getBoundingClientRect();
     setOffset({
       x: e.clientX - rect.left,
@@ -42,6 +49,13 @@ export default function About() {
     });
     setIsDragging(true);
   };
+
+  useEffect(() => {
+    if (visible && boxRef.current) {
+      const newZIndex = getNextZIndex();
+      boxRef.current.style.zIndex = newZIndex.toString();
+    }
+  }, [visible]);
 
   return (
     <div>
@@ -57,7 +71,15 @@ export default function About() {
           >
             <Image src={"/word.png"} alt="Logo" width={20} height={20} />
             <h2 className={styles.title}>About Me - Microsoft Word</h2>
-            <div className={styles.close} onClick={() => setVisible(false)}>
+            <div className={styles.close} 
+              onClick={(e) => {
+                e.stopPropagation();
+                setVisible(false);
+              }}
+              onMouseDown={(e) => {
+                e.stopPropagation();
+              }}
+            >
               <h2>X</h2>
             </div>
           </div>
@@ -85,7 +107,7 @@ export default function About() {
                 One of my goals is to become a <strong>design engineer</strong>. 
                 Design Engineers work across the company, contributing to branding, marketing, product development, and the internal design system. 
                 They sit at the intersection of form and function: by bringing design ideas to life, bridging the gap between design and development teams, and prototyping with real code instead of static mockups.
-                It&apos;s a role I admire deeply, and is one that is starting to gain popularity especially in companies like Vercel. I recommend reading their blog post about it <a href="https://vercel.com/blog/design-engineering-at-vercel">here</a>. However, it&apos;s still not very common or widely understood here in Egypt. I hope to help change 
+                It&apos;s a role I admire deeply, and is one that is starting to gain popularity especially in companies like Vercel. I recommend reading their blog post about it <a href="https://vercel.com/blog/design-engineering-at-vercel">here</a>. However, it&apos;s still not very common. I hope to help change 
                 that by showing what&apos;s possible when design thinking and engineering craft come together.
               </p>
               <p>
@@ -166,7 +188,7 @@ export default function About() {
                   <img src={"https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3drdnd2cXhyZngzcXJ5ZWJkY3J4N3B3aWJ0dHI4cHoxamFseXc4NiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/M4QtKS06zmJ2g/giphy.gif"} alt="Chungking" />
                 </div>
                 <div className={styles.masonryItem}>
-                  <img src={"/blonde.jpg"} alt="Blonde" />
+                  <img src={"/blonde.jpeg"} alt="Blonde" />
                 </div>
                 <div className={styles.masonryItem}>
                   <img src={"https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExcWVkNHg1ZWticWQxOTBnY21tdjUycDlubmt5dzVib25kMnNvem5reSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l3fZPYrlEGoSLvq9O/giphy.gif"} alt="Chungking" />

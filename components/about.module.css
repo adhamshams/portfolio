@@ -22,7 +22,6 @@
 }
 
 .container {
-    z-index: 1000;
     position: absolute;
     top: 10%;
     left: 20%;
@@ -94,20 +93,7 @@
 
 .wordart {
     object-fit: contain;
-    animation-name: moveInLeft;
-    animation-duration: 1.5s;
-    animation-timing-function: ease-out;
 }
-
-@keyframes moveInLeft {
-    0% {
-        transform: rotateY(180deg);
-    }
-    100% {
-        transform: rotateY(0deg);
-    }
-}
-
 .about span {
     background-color: sandybrown;
 }

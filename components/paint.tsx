@@ -4,6 +4,7 @@ import { useRef, useState, useEffect } from "react";
 import styles from "./paint.module.css";
 import Image from "next/image";
 import Canvas from "./canvas";
+import { useZIndex } from "@/contexts/ZIndexContext";
 
 export default function Paint() {
   const boxRef = useRef<HTMLDivElement>(null);
@@ -11,6 +12,7 @@ export default function Paint() {
   const [selectedColor, setSelectedColor] = useState("#000000");
   const [offset, setOffset] = useState({ x: 0, y: 0 });
   const [visible, setVisible] = useState(true);
+  const { getNextZIndex } = useZIndex();
 
   useEffect(() => {
     const handleMouseMove = (e: { clientX: number; clientY: number }) => {
@@ -36,6 +38,11 @@ export default function Paint() {
   const handleMouseDown = (e: { clientX: number; clientY: number }) => {
     const box = boxRef.current;
     if (!box) return;
+    
+    // Bring this component to front
+    const newZIndex = getNextZIndex();
+    box.style.zIndex = newZIndex.toString();
+    
     const rect = box.getBoundingClientRect();
     setOffset({
       x: e.clientX - rect.left,
@@ -43,6 +50,13 @@ export default function Paint() {
     });
     setIsDragging(true);
   };
+
+  useEffect(() => {
+    if (visible && boxRef.current) {
+      const newZIndex = getNextZIndex();
+      boxRef.current.style.zIndex = newZIndex.toString();
+    }
+  }, [visible]);
 
   return (
     <div>
@@ -58,7 +72,15 @@ export default function Paint() {
           >
             <Image src={"/paint.webp"} alt="Logo" width={20} height={20} />
             <h2 className={styles.title}>Me - Paint</h2>
-            <div className={styles.close} onClick={() => setVisible(false)}>
+            <div className={styles.close} 
+              onClick={(e) => {
+                e.stopPropagation();
+                setVisible(false);
+              }}
+              onMouseDown={(e) => {
+                e.stopPropagation();
+              }}
+            >
               <h2>X</h2>
             </div>
           </div>

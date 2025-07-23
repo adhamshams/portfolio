@@ -2,11 +2,13 @@
 import { useRef, useState, useEffect } from "react";
 
 import styles from "./note.module.css";
+import { useZIndex } from "@/contexts/ZIndexContext";
 
 export default function Note() {
     const boxRef = useRef<HTMLDivElement>(null);
     const [isDragging, setIsDragging] = useState(false);
     const [offset, setOffset] = useState({ x: 0, y: 0 });
+    const { getNextZIndex } = useZIndex();
 
     useEffect(() => {
         const handleMouseMove = (e: { clientX: number; clientY: number }) => {
@@ -32,6 +34,11 @@ export default function Note() {
     const handleMouseDown = (e: { clientX: number; clientY: number }) => {
         const box = boxRef.current;
         if (!box) return;
+        
+        // Bring this component to front
+        const newZIndex = getNextZIndex();
+        box.style.zIndex = newZIndex.toString();
+        
         const rect = box.getBoundingClientRect();
         setOffset({
             x: e.clientX - rect.left,
