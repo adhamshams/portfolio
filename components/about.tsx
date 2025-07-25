@@ -11,6 +11,7 @@ export default function About() {
   const [isDragging, setIsDragging] = useState(false);
   const [offset, setOffset] = useState({ x: 0, y: 0 });
   const [visible, setVisible] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
   const { getNextZIndex } = useZIndex();
 
   useEffect(() => {
@@ -53,10 +54,18 @@ export default function About() {
     }
   }, [visible]);
 
+  const handleClose = () => {
+    setIsClosing(true);
+    setTimeout(() => {
+      setVisible(false);
+      setIsClosing(false);
+    }, 200); // Match the animation duration
+  };
+
   return (
     <div>
       <div className={styles.icon} onClick={() => setVisible(true)}>
-        <Image src={"/word.png"} alt="Logo" width={45} height={45} />
+        <Image src={"/html.webp"} alt="Logo" width={45} height={45} />
         <h2>About Me</h2>
       </div>
       {visible && (
@@ -64,23 +73,23 @@ export default function About() {
           // Bring this component to front
           const newZIndex = getNextZIndex();
           boxRef.current && (boxRef.current.style.zIndex = newZIndex.toString());
-        }} className={styles.container}>
+        }} className={`${styles.container} ${isClosing ? styles.closing : ''}`}>
           <div
             onMouseDown={handleMouseDown}
             className={`${styles.nav} ${isDragging ? styles.grabbing : ""}`}
           >
-            <Image src={"/word.png"} alt="Logo" width={20} height={20} />
-            <h2 className={styles.title}>About Me - Microsoft Word</h2>
+            <Image src={"/html.webp"} alt="Logo" width={20} height={20} />
+            <h2 className={styles.title}>About Me</h2>
             <div className={styles.close}
               onClick={(e) => {
                 e.stopPropagation();
-                setVisible(false);
+                handleClose();
               }}
               onMouseDown={(e) => {
                 e.stopPropagation();
               }}
             >
-              <h2>X</h2>
+              <Image src={"/exit.webp"} alt="Close" width={25} height={25} />
             </div>
           </div>
           <div className={styles.canvas}>
@@ -91,19 +100,38 @@ export default function About() {
                 width={300}
                 height={150}
                 className={styles.wordart}
-                priority
               />
               <p>
-                Hello! My name is Adham Shams and I&apos;m a <strong><span>????</span></strong> who loves
-                playing at the crossroads of product design, UI/UX, and front-end dev. I&apos;m currently
-                doing my Master&apos;s in Human-Computer Interaction at the GUC, chasing the magic where
-                design meets code. </p> <p> My dream? To become a <strong>design engineer</strong>, the
-                  kind that builds ideas with code, bridges design and dev teams, and helps shape everything
-                  from product to brand. It&apos;s a role that&apos;s picking up steam at places like <a href="https://vercel.com/blog/design-engineering-at-vercel">Vercel</a>, and I hope to
-                help push it forward. </p> <p> This XP-themed portfolio is a love letter to my early days
-                  on a family PC, where curiosity ran wild. That playful spirit still fuels everything I do. </p>
-              <p> As you scroll, you&apos;ll stumble upon snapshots of my life, some meaningful, some random, but all
-                part of the ride. </p>
+                Hello! My name is Adham Shams, and I am a <strong><span>?????</span></strong> who loves
+                to play in product design, ui/ux, front-end dev, and ways to make the web
+                a more fun place. Currently pursuing my master&apos;s in Human-Computer Interaction at the GUC.
+                At my core, I&apos;ve always been curious about the world of
+                design and driven by a passion for creating meaningful digital experiences.
+                Once I discovered the limitless creative potential
+                of code, I found myself thriving in that playful, ever-evolving space where
+                technology and art collide.
+              </p>
+
+              <p>
+                My dream? To become a <strong>design engineer</strong>. Design Engineers work across the company, 
+                contributing to branding, marketing, product development, and the internal design system. 
+                It&apos;s a role that&apos;s picking up steam at companies I admire like {' '} 
+                <a href="https://vercel.com/blog/design-engineering-at-vercel">Vercel</a> and Shopify. I only hope to help push it forward.
+              </p>
+
+              <p>
+                I care deeply about the little things, the microinteractions, the animations, the spacing that just feels right. I believe great design isn’t just about how things look, 
+                but how they behave, how they guide people, and how they make someone feel seen. I value craft, clarity, and going the extra mile to make even the smallest detail thoughtful. 
+                Because those tiny moments? They add up. They make the difference between "just works" and "feels magical".
+              </p>
+
+              <p>
+                This XP-themed portfolio is a love letter to my early days
+                on a family PC, where curiosity ran wild. That playful spirit still fuels everything I do.
+                As you scroll, you&apos;ll stumble upon snapshots of my life, some meaningful, some random, but all
+                part of the ride.
+              </p>
+
               <Masonry columns={3} spacing={1}>
                 <div className={styles.masonryItem}>
                   <img src={"/a.jpg"} alt="Letter A" />

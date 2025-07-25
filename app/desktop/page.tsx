@@ -1,7 +1,7 @@
 import styles from "./page.module.css";
 import Paint from "@/components/paint";
 import About from "@/components/about";
-import Projects from "@/components/projects";
+import BrewBuzz from "@/components/project-01";
 import Minesweeper from "@/components/minesweeper";
 import Note from "@/components/note";
 import TaskBar from "@/components/task-bar";
@@ -22,7 +22,7 @@ export default function Desktop() {
         />
         <Paint />
         <About />
-        <Projects />
+        <BrewBuzz />
         <Minesweeper />
         <Note />
         <TaskBar />

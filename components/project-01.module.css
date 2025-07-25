@@ -3,6 +3,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    text-align: center;
     color: #fff;
     gap: 12px;
     cursor: pointer;
@@ -23,8 +24,8 @@
 
 .container {
     position: absolute;
-    top: 10%;
-    left: 20%;
+    top: 20%;
+    left: 25%;
     width: 50vw;
     height: 60vh;
     border: 1px solid #025aee;
@@ -93,43 +94,32 @@
 
 .canvas {
     background-color: #fff;
-    overflow: scroll;
     flex: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 20px;
+    gap: 12px;
 }
 
-.about {
-    display: flex;
+.subIcon {
+    display: inline-flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #000;
     gap: 12px;
-    padding: 0 20px;
-    margin-top: 12px;
+    cursor: pointer;
+    padding: 8px 0;
+    width: 90px;
+    user-select: none;
 }
 
-.about a {
-    color: #025aee;
-    text-decoration: underline;
+.subIcon:hover {
+    background-color: rgba(105, 105, 105, 0.2);
 }
 
-.wordart {
-    object-fit: contain;
-}
-.about span {
-    background-color: sandybrown;
-}
-
-.about p {
-    text-indent: 20px;
-}
-
-.masonryItem {
-    display: block;
-    width: 100%;
-}
-
-.masonryItem img,
-.masonryItem video {
-    display: block;
-    width: 100%;
-    height: auto;
+.subIcon p {
+    font-size: 12px;
 }

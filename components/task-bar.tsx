@@ -33,11 +33,6 @@ export default function TaskBar() {
                   <Image src={"/mail.png"} alt="Email" width={16} height={16} />
                   <span>hello@adhamshams.com</span>
                 </a>
-                
-                <a href="/resume.pdf" className={styles.menuItem}>
-                  <Image src={"/word.png"} alt="Resume" width={16} height={16} />
-                  <span>Resume / CV</span>
-                </a>
 
                 <a href="https://www.linkedin.com/in/adhamshams" className={styles.menuItem}>
                   <Image src={"/world.png"} alt="LinkedIn" width={16} height={16} />
@@ -47,7 +42,7 @@ export default function TaskBar() {
                 <div className={styles.menuSeparator}></div>
                 
                 <a href="/" className={styles.menuItem}>
-                  <Image src={"/off-icon.png"} alt="About" width={16} height={16} />
+                  <Image src={"/logout.png"} alt="About" width={16} height={16} />
                   <span>Sign Out</span>
                 </a>
               </div>
@@ -56,7 +51,7 @@ export default function TaskBar() {
         </div>
         <div className={styles.timeContainer}>
           <h2>
-            13:22 PM
+            13:01 PM
           </h2>
         </div>
       </div>

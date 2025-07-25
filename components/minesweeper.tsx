@@ -19,6 +19,7 @@ export default function Minesweeper() {
     const [isDragging, setIsDragging] = useState(false);
     const [offset, setOffset] = useState({ x: 0, y: 0 });
     const [visible, setVisible] = useState(false);
+    const [isClosing, setIsClosing] = useState(false);
     const { getNextZIndex } = useZIndex();
 
     // Minesweeper game state
@@ -118,6 +119,14 @@ export default function Minesweeper() {
         }
     }, [visible]);
 
+    const handleClose = () => {
+        setIsClosing(true);
+        setTimeout(() => {
+            setVisible(false);
+            setIsClosing(false);
+        }, 200); // Match the animation duration
+    };
+
     // Reveal cell and adjacent empty cells
     const revealCell = useCallback((row: number, col: number) => {
         if (gameStatus !== 'Playing') return;
@@ -184,9 +193,13 @@ export default function Minesweeper() {
             const cell = newBoard[row][col];
 
             if (!cell.isRevealed) {
-                const wasFlagged = cell.isFlagged;
-                cell.isFlagged = !cell.isFlagged;
-                setFlagCount(prev => wasFlagged ? prev + 1 : prev - 1);
+                if (cell.isFlagged) {
+                    cell.isFlagged = false;
+                    setFlagCount(prev => prev + 1);
+                } else if (flagCount > 0) {
+                    cell.isFlagged = true;
+                    setFlagCount(prev => prev - 1);
+                }
             }
 
             return newBoard;
@@ -264,7 +277,7 @@ export default function Minesweeper() {
                     // Bring this component to front
                     const newZIndex = getNextZIndex();
                     boxRef.current && (boxRef.current.style.zIndex = newZIndex.toString());
-                }} className={styles.container}>
+                }} className={`${styles.container} ${isClosing ? styles.closing : ''}`}>
                     <div
                         onMouseDown={handleMouseDown}
                         className={`${styles.nav} ${isDragging ? styles.grabbing : ""}`}
@@ -274,13 +287,13 @@ export default function Minesweeper() {
                         <div className={styles.close}
                             onClick={(e) => {
                                 e.stopPropagation();
-                                setVisible(false);
+                                handleClose();
                             }}
                             onMouseDown={(e) => {
                                 e.stopPropagation();
                             }}
                         >
-                            <h2>X</h2>
+                            <Image src={"/exit.webp"} alt="Close" width={25} height={25} />
                         </div>
                     </div>
                     <div className={styles.canvas}>
@@ -289,7 +302,7 @@ export default function Minesweeper() {
                                 {flagCount.toString().padStart(3, '0')}
                             </div>
                             <div className={styles.resetCell} onClick={resetGame}>
-                                😃
+                                <Image src={"/smiley.png"} alt="Reset" width={25} height={25} />
                             </div>
                             <div className={styles.analogDisplay}>
                                 {timer.toString().padStart(3, '0')}
@@ -315,12 +328,12 @@ export default function Minesweeper() {
                                         >
                                             {cell.isRevealed ? (
                                                 cell.isMine ? (
-                                                    '💣'
+                                                    <Image src={"/bomb.png"} alt="Mine" width={30} height={30} />
                                                 ) : cell.neighborCount > 0 ? (
                                                     cell.neighborCount
                                                 ) : ''
                                             ) : cell.isFlagged ? (
-                                                '🚩'
+                                                <Image src={"/flag.png"} alt="Flag" width={30} height={30} />
                                             ) : ''}
                                         </div>
                                     ))}

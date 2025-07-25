@@ -12,6 +12,7 @@ export default function Paint() {
   const [selectedColor, setSelectedColor] = useState("#000000");
   const [offset, setOffset] = useState({ x: 0, y: 0 });
   const [visible, setVisible] = useState(true);
+  const [isClosing, setIsClosing] = useState(false);
   const { getNextZIndex } = useZIndex();
 
   useEffect(() => {
@@ -54,6 +55,14 @@ export default function Paint() {
     }
   }, [visible]);
 
+  const handleClose = () => {
+    setIsClosing(true);
+    setTimeout(() => {
+      setVisible(false);
+      setIsClosing(false);
+    }, 200); // Match the animation duration
+  };
+
   return (
     <div>
       <div className={styles.icon} onClick={() => setVisible(true)}>
@@ -65,23 +74,23 @@ export default function Paint() {
           // Bring this component to front
           const newZIndex = getNextZIndex();
           boxRef.current && (boxRef.current.style.zIndex = newZIndex.toString());
-        }} className={styles.container}>
+        }} className={`${styles.container} ${isClosing ? styles.closing : ''}`}>
           <div
             onMouseDown={handleMouseDown}
             className={`${styles.nav} ${isDragging ? styles.grabbing : ""}`}
           >
             <Image src={"/paint.webp"} alt="Logo" width={20} height={20} />
-            <h2 className={styles.title}>Me - Paint</h2>
+            <h2 className={styles.title}>Paint</h2>
             <div className={styles.close}
               onClick={(e) => {
                 e.stopPropagation();
-                setVisible(false);
+                handleClose();
               }}
               onMouseDown={(e) => {
                 e.stopPropagation();
               }}
             >
-              <h2>X</h2>
+              <Image src={"/exit.webp"} alt="Close" width={25} height={25} />
             </div>
           </div>
           <div className={styles.canvas}>

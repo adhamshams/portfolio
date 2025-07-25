@@ -10,7 +10,7 @@ export default function Home() {
         <div className={styles.metaData}>
           <Image src="/sun.webp" alt="sun" width={65} height={65} />
           <h2>Portfolio 01&apos;</h2>
-          <p>To begin, click your user name</p>
+          <p>To begin, click my user name</p>
         </div>
         <div className={styles.seperator} />
         <Link href="/desktop" className={styles.usernameContainer}>
@@ -21,7 +21,7 @@ export default function Home() {
       <div className={styles.footer}>
         <div className={styles.turnOffContainer}>
           <Link href="/off">
-            <Image src="/off-icon.png" alt="turn-off" width={48} height={48} />
+            <Image src="/power.webp" alt="turn-off" width={35} height={35} />
           </Link>
           <h2>Turn off portfolio</h2>
         </div>
