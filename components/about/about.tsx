@@ -134,22 +134,22 @@ export default function About() {
 
               <Masonry columns={3} spacing={1}>
                 <div className={styles.masonryItem}>
-                  <img src={"/a.jpg"} alt="Letter A" loading="lazy" />
+                  <img src={"/a.jpg"} alt="Letter A" />
                 </div>
                 <div className={styles.masonryItem}>
-                  <img src={"/id.webp"} alt="GUC ID" loading="lazy" />
+                  <img src={"/id.webp"} alt="GUC ID" />
                 </div>
                 <div className={styles.masonryItem}>
-                  <img src={"/tag.jpg"} alt="Tag" loading="lazy" />
+                  <img src={"/tag.jpg"} alt="Tag" />
                 </div>
                 <div className={styles.masonryItem}>
-                  <img src={"/study.jpg"} alt="Study" loading="lazy" />
+                  <img src={"/study.jpg"} alt="Study" />
                 </div>
                 <div className={styles.masonryItem}>
-                  <img src={"/florida.jpg"} alt="Florida" loading="lazy" />
+                  <img src={"/florida.jpg"} alt="Florida" />
                 </div>
                 <div className={styles.masonryItem}>
-                  <img src={"/stitch.jpg"} alt="Stitch" loading="lazy" />
+                  <img src={"/stitch.jpg"} alt="Stitch" />
                 </div>
                 <div className={styles.masonryItem}>
                   <video autoPlay loop muted>
@@ -158,52 +158,52 @@ export default function About() {
                   </video>
                 </div>
                 <div className={styles.masonryItem}>
-                  <img src={"/metro.webp"} alt="Metro" loading="lazy" />
+                  <img src={"/metro.webp"} alt="Metro" />
                 </div>
                 <div className={styles.masonryItem}>
-                  <img src={"/hero.gif"} alt="Hero" loading="lazy" />
+                  <img src={"/hero.gif"} alt="Hero" />
                 </div>
                 <div className={styles.masonryItem}>
-                  <img src={"/hamster.jpg"} alt="Hamster" loading="lazy" />
+                  <img src={"/hamster.jpg"} alt="Hamster" />
                 </div>
                 <div className={styles.masonryItem}>
-                  <img src={"/images.jpeg"} alt="Stranded" loading="lazy" />
+                  <img src={"/images.jpeg"} alt="Stranded" />
                 </div>
                 <div className={styles.masonryItem}>
-                  <img src={"/jarir.jpg"} alt="Jeddah" loading="lazy" />
+                  <img src={"/jarir.jpg"} alt="Jeddah" />
                 </div>
                 <div className={styles.masonryItem}>
-                  <img src={"/gunners.jpg"} alt="Gunners" loading="lazy" />
+                  <img src={"/gunners.jpg"} alt="Gunners" />
                 </div>
                 <div className={styles.masonryItem}>
-                  <img src={"/stranded.jpg"} alt="Stranded" loading="lazy" />
+                  <img src={"/stranded.jpg"} alt="Stranded" />
                 </div>
                 <div className={styles.masonryItem}>
-                  <img src={"/battlefield.jpg"} alt="Battlefield" loading="lazy" />
+                  <img src={"/battlefield.jpg"} alt="Battlefield" />
                 </div>
                 <div className={styles.masonryItem}>
-                  <img src={"https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExdjZuNGJlOXIyZHVmbWdvN2JxMzhzb3NmNTRveXRqMzV5NXlldDNvcyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/SupA7OgPcAI0g/giphy.gif"} alt="Chungking" loading="lazy" />
+                  <img src={"https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExdjZuNGJlOXIyZHVmbWdvN2JxMzhzb3NmNTRveXRqMzV5NXlldDNvcyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/SupA7OgPcAI0g/giphy.gif"} alt="Chungking" />
                 </div>
                 <div className={styles.masonryItem}>
-                  <img src={"/quote.jpg"} alt="Quote" loading="lazy" />
+                  <img src={"/quote.jpg"} alt="Quote" />
                 </div>
                 <div className={styles.masonryItem}>
-                  <img src={"https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExODc0dTFvZ3JmMGV4amVpNW9uZXM1aXplZXBpY3liNWxiMTQxYWQ1biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/iFqOpuQDLgzEiKiWTi/giphy.gif"} alt="Chungking" loading="lazy" />
+                  <img src={"https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExODc0dTFvZ3JmMGV4amVpNW9uZXM1aXplZXBpY3liNWxiMTQxYWQ1biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/iFqOpuQDLgzEiKiWTi/giphy.gif"} alt="Chungking" />
                 </div>
                 <div className={styles.masonryItem}>
-                  <img src={"/zawya.jpg"} alt="Zawya" loading="lazy" />
+                  <img src={"/zawya.jpg"} alt="Zawya" />
                 </div>
                 <div className={styles.masonryItem}>
-                  <img src={"/berlin.png"} alt="Berlin" loading="lazy" />
+                  <img src={"/berlin.png"} alt="Berlin" />
                 </div>
                 <div className={styles.masonryItem}>
-                  <img src={"https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3drdnd2cXhyZngzcXJ5ZWJkY3J4N3B3aWJ0dHI4cHoxamFseXc4NiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/M4QtKS06zmJ2g/giphy.gif"} alt="Chungking" loading="lazy" />
+                  <img src={"https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3drdnd2cXhyZngzcXJ5ZWJkY3J4N3B3aWJ0dHI4cHoxamFseXc4NiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/M4QtKS06zmJ2g/giphy.gif"} alt="Chungking" />
                 </div>
                 <div className={styles.masonryItem}>
-                  <img src={"/blonde.jpeg"} alt="Blonde" loading="lazy" />
+                  <img src={"/blonde.jpeg"} alt="Blonde" />
                 </div>
                 <div className={styles.masonryItem}>
-                  <img src={"https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExcWVkNHg1ZWticWQxOTBnY21tdjUycDlubmt5dzVib25kMnNvem5reSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l3fZPYrlEGoSLvq9O/giphy.gif"} alt="Chungking" loading="lazy" />
+                  <img src={"https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExcWVkNHg1ZWticWQxOTBnY21tdjUycDlubmt5dzVib25kMnNvem5reSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l3fZPYrlEGoSLvq9O/giphy.gif"} alt="Chungking" />
                 </div>
               </Masonry>
             </div>
