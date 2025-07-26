@@ -19,31 +19,29 @@ export default function TaskBar() {
           {showStartMenu && (
             <div className={styles.startMenu}>
               <div className={styles.startMenuHeader}>
-                <div className={styles.userSection}>
-                  <Image src={"/user.jpg"} alt="Profile" width={48} height={48} className={styles.profileImage} />
+                  <Image src={"/user.jpg"} alt="Profile" width={60} height={60} className={styles.profileImage} />
                   <div className={styles.userInfo}>
-                    <h3>Adham Shams</h3>
-                    <p>Full Stack Developer @ Botit</p>
+                    <h2>Adham Shams</h2>
+                    <p>Unemployed</p>
                   </div>
-                </div>
               </div>
               
               <div className={styles.startMenuContent}>
                 <a href="mailto:hello@adhamshams.com" className={styles.menuItem}>
-                  <Image src={"/mail.png"} alt="Email" width={16} height={16} />
+                  <Image src={"/mail.webp"} alt="Email" width={25} height={25} />
                   <span>hello@adhamshams.com</span>
                 </a>
 
                 <a href="https://www.linkedin.com/in/adhamshams" className={styles.menuItem}>
-                  <Image src={"/world.png"} alt="LinkedIn" width={16} height={16} />
+                  <Image src={"/internet.webp"} alt="LinkedIn" width={25} height={25} />
                   <span>LinkedIn Profile</span>
                 </a>
                 
                 <div className={styles.menuSeparator}></div>
                 
                 <a href="/" className={styles.menuItem}>
-                  <Image src={"/logout.png"} alt="About" width={16} height={16} />
-                  <span>Sign Out</span>
+                  <Image src={"/switch.webp"} alt="About" width={25} height={25} />
+                  <span>Switch User</span>
                 </a>
               </div>
             </div>

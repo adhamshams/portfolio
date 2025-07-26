@@ -1,9 +1,11 @@
 "use client";
 import { useRef, useState, useEffect } from "react";
 
-import styles from "./project-01.module.css";
+import styles from "./project.module.css";
 import Image from "next/image";
 import { useZIndex } from "@/contexts/ZIndexContext";
+import Thumbnail from "./thumbnail";
+import About from "./about";
 
 export default function BrewBuzz() {
   const boxRef = useRef<HTMLDivElement>(null);
@@ -11,6 +13,8 @@ export default function BrewBuzz() {
   const [offset, setOffset] = useState({ x: 0, y: 0 });
   const [visible, setVisible] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
+  const [showThumbnail, setShowThumbnail] = useState(false);
+  const [showAbout, setShowAbout] = useState(false);
   const { getNextZIndex } = useZIndex();
 
   useEffect(() => {
@@ -92,29 +96,71 @@ export default function BrewBuzz() {
             </div>
           </div>
           <div className={styles.canvas}>
-            <div className={styles.subIcon}>
+            <div className={styles.subIcon}
+              onClick={(e) => {
+                e.stopPropagation();
+                setShowThumbnail(true);
+              }}
+              onMouseDown={(e) => {
+                e.stopPropagation();
+              }}
+            >
               <Image src={"/image.webp"} alt="Logo" width={45} height={45} />
               <p>thumbnail.png</p>
             </div>
-            <div className={styles.subIcon}>
+            <div className={styles.subIcon}
+              onClick={(e) => {
+                e.stopPropagation();
+                setShowAbout(true);
+              }}
+              onMouseDown={(e) => {
+                e.stopPropagation();
+              }}
+            >
               <Image src={"/txt.webp"} alt="Logo" width={45} height={45} />
               <p>about.txt</p>
             </div>
-            <a href="https://brewbuzzcoffee.com" target="_blank" rel="noopener noreferrer" className={styles.subIcon}>
+            <a href="https://brewbuzzcoffee.com" target="_blank" rel="noopener noreferrer" className={styles.subIcon}
+              onClick={(e) => {
+                e.stopPropagation();
+                setShowAbout(true);
+              }}
+              onMouseDown={(e) => {
+                e.stopPropagation();
+              }}
+            >
               <Image src={"/internet.webp"} alt="Logo" width={45} height={45} />
               <p>website</p>
             </a>
-            <a href="https://apps.apple.com/eg/app/brew-buzz/id6738006550" target="_blank" rel="noopener noreferrer" className={styles.subIcon}>
+            <a href="https://apps.apple.com/eg/app/brew-buzz/id6738006550" target="_blank" rel="noopener noreferrer" className={styles.subIcon}
+              onClick={(e) => {
+                e.stopPropagation();
+                setShowAbout(true);
+              }}
+              onMouseDown={(e) => {
+                e.stopPropagation();
+              }}
+            >
               <Image src={"/phone.webp"} alt="Logo" width={45} height={45} />
               <p>ios app</p>
             </a>
-            <a href="https://play.google.com/store/apps/details?id=com.adhamshams.brewbuzzcoffee" target="_blank" rel="noopener noreferrer" className={styles.subIcon}>
+            <a href="https://play.google.com/store/apps/details?id=com.adhamshams.brewbuzzcoffee" target="_blank" rel="noopener noreferrer" className={styles.subIcon}
+              onClick={(e) => {
+                e.stopPropagation();
+                setShowAbout(true);
+              }}
+              onMouseDown={(e) => {
+                e.stopPropagation();
+              }}
+            >
               <Image src={"/phone.webp"} alt="Logo" width={45} height={45} />
               <p>android app</p>
             </a>
           </div>
         </div>
       )}
+      {showThumbnail && <Thumbnail onClose={() => setShowThumbnail(false)} />}
+      {showAbout && <About onClose={() => setShowAbout(false)} />}
     </div>
   );
 }

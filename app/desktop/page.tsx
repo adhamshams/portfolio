@@ -1,10 +1,10 @@
 import styles from "./page.module.css";
-import Paint from "@/components/paint";
-import About from "@/components/about";
-import BrewBuzz from "@/components/project-01";
-import Minesweeper from "@/components/minesweeper";
-import Note from "@/components/note";
-import TaskBar from "@/components/task-bar";
+import Paint from "@/components/paint/paint";
+import About from "@/components/about/about";
+import BrewBuzz from "@/components/project-01/project";
+import Minesweeper from "@/components/minesweeper/minesweeper";
+import Note from "@/components/note/note";
+import TaskBar from "@/components/task-bar/task-bar";
 
 import Image from "next/image";
 import { ZIndexProvider } from "@/contexts/ZIndexContext";
@@ -18,7 +18,7 @@ export default function Desktop() {
           alt="Background"
           className={styles.backgroundImage}
           fill
-          priority
+          loading="eager"
         />
         <Paint />
         <About />
