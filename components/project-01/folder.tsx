@@ -1,7 +1,7 @@
 "use client";
 import { useRef, useState, useEffect } from "react";
 
-import styles from "./project.module.css";
+import styles from "./folder.module.css";
 import Image from "next/image";
 import { useZIndex } from "@/contexts/ZIndexContext";
 import Thumbnail from "./thumbnail";
@@ -69,7 +69,7 @@ export default function BrewBuzz() {
     <div>
       <div className={styles.icon} onClick={() => setVisible(true)}>
         <Image src={"/folder.webp"} alt="Logo" width={45} height={45} />
-        <h2>Project 01 - Brew Buzz</h2>
+        <h2>Project 01 - Brew Buzz Sp...</h2>
       </div>
       {visible && (
         <div ref={boxRef} onMouseDown={() => {
@@ -82,7 +82,7 @@ export default function BrewBuzz() {
             className={`${styles.nav} ${isDragging ? styles.grabbing : ""}`}
           >
             <Image src={"/folder.webp"} alt="Logo" width={20} height={20} />
-            <h2 className={styles.title}>Project 01 - Brew Buzz</h2>
+            <h2 className={styles.title}>Project 01 - Brew Buzz Specialty Coffee</h2>
             <div className={styles.close}
               onClick={(e) => {
                 e.stopPropagation();
@@ -120,17 +120,6 @@ export default function BrewBuzz() {
               <Image src={"/txt.webp"} alt="Logo" width={45} height={45} />
               <p>about.txt</p>
             </div>
-            <a href="https://brewbuzzcoffee.com" target="_blank" rel="noopener noreferrer" className={styles.subIcon}
-              onClick={(e) => {
-                e.stopPropagation();
-              }}
-              onMouseDown={(e) => {
-                e.stopPropagation();
-              }}
-            >
-              <Image src={"/internet.webp"} alt="Logo" width={45} height={45} />
-              <p>website</p>
-            </a>
             <a href="https://apps.apple.com/eg/app/brew-buzz/id6738006550" target="_blank" rel="noopener noreferrer" className={styles.subIcon}
               onClick={(e) => {
                 e.stopPropagation();
@@ -152,6 +141,28 @@ export default function BrewBuzz() {
             >
               <Image src={"/phone.webp"} alt="Logo" width={45} height={45} />
               <p>android app</p>
+            </a>
+            <a href="https://brewbuzzcoffee.com" target="_blank" rel="noopener noreferrer" className={styles.subIcon}
+              onClick={(e) => {
+                e.stopPropagation();
+              }}
+              onMouseDown={(e) => {
+                e.stopPropagation();
+              }}
+            >
+              <Image src={"/internet.webp"} alt="Logo" width={45} height={45} />
+              <p>website</p>
+            </a>
+            <a href="/brewbuzz" target="_blank" rel="noopener noreferrer" className={styles.subIcon}
+              onClick={(e) => {
+                e.stopPropagation();
+              }}
+              onMouseDown={(e) => {
+                e.stopPropagation();
+              }}
+            >
+              <Image src={"/case.webp"} alt="Logo" width={45} height={45} />
+              <p>case study</p>
             </a>
           </div>
         </div>

@@ -66,7 +66,7 @@ export default function About() {
     <div>
       <div className={styles.icon} onClick={() => setVisible(true)}>
         <Image src={"/word.png"} alt="Logo" width={45} height={45} />
-        <h2>About Me</h2>
+        <h2>about me.docx</h2>
       </div>
       {visible && (
         <div ref={boxRef} onMouseDown={() => {
@@ -79,7 +79,7 @@ export default function About() {
             className={`${styles.nav} ${isDragging ? styles.grabbing : ""}`}
           >
             <Image src={"/word.png"} alt="Logo" width={20} height={20} />
-            <h2 className={styles.title}>About Me</h2>
+            <h2 className={styles.title}>about me.docx</h2>
             <div className={styles.close}
               onClick={(e) => {
                 e.stopPropagation();
@@ -110,7 +110,7 @@ export default function About() {
                 My dream? To become a <strong>design engineer</strong>. Design Engineers work across the company, 
                 contributing to branding, marketing, product development, and the internal design system. 
                 It&apos;s a role that&apos;s picking up steam at companies I admire like {' '} 
-                Vercel, Netflix, Shopify, and more. Read Vercel's blog post on design engineering <a href="https://vercel.com/blog/design-engineering-at-vercel">here</a>. 
+                Vercel, Netflix, Shopify, Meta, and more. Read Vercel's blog post on design engineering <a href="https://vercel.com/blog/design-engineering-at-vercel" target="_blank" rel="noopener noreferrer">here</a>. 
                 I only hope to help push it forward.
               </p>
 

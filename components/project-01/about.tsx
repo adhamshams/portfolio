@@ -86,12 +86,12 @@ export default function About({ onClose }: { onClose: () => void }) {
             </div>
             <div className={styles.canvas}>
                 <div className={styles.about}>
-                    <h2>Brew Buzz – App & Website</h2>
+                    <h2>Brew Buzz Specialty Coffee</h2>
                     <p className={styles.role}>roles: ui/ux design, mobile dev, web dev</p>
                     <p>Brew Buzz is a specialty coffee shop in cairo with a name thats as lively as the space itself. Buzzing, bright, and irresistibly cute. From the very beginning, I wanted the digital experience to be full of personality and feel just like stepping into Brew Buzz in real life. That meant approaching the design not just as a developer, but as a storyteller translating a physical space into pixels.</p>
                     <p>The visual language was guided by the brands playful spirit. Rounded shapes, soft shadows, friendly typography, and a vibrant but cozy color palette were all key elements. Every button, screen, and transition was designed to feel fluid and intuitive, as if the app itself was "bouncing" with energy. Even small UI details like the animated loyalty card, the falling mascot after the app splash screen, and microinteractions on the website all added to that sense of delight.</p>
                     <p>I designed and developed a high-performance mobile app using React Native and Firebase. The app includes a full-featured ordering system, loyalty program, wallet integration, promo codes, and digital gift cards, all of which helped drive over 100K EGP in revenue serving over 500 users monthly.</p>
-                    <p>Beyond functionality, I treated the branding as an ecosystem. I secured the brewbuzzcoffee.com domain and set up a custom SMS sender ID so even OTPs felt like they came from the Brew Buzz world. The landing page, built with React.js, mirrors the in-store experience online.</p>
+                    <p>Beyond functionality, I treated the branding as an ecosystem. I secured the brewbuzzcoffee.com domain and set up a custom SMS sender ID so even OTPs felt like they came from the Brew Buzz world. The landing page, built with Next.js, mirrors the in-store experience online.</p>
                     <p>This wasnt just a tech project, it was a full brand experience, designed to be as flavorful and inviting as the coffee itself.</p>
                 </div>
             </div>

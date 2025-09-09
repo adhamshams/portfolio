@@ -58,7 +58,6 @@ export default function Note() {
             <p className={styles.complete}>-find the best matcha in cairo</p>
             <p>-make this portfolio mobile responsive</p>
             <p>-learn 3D art</p>
-            <p>-complete my Letterboxd watchlist</p>
             <p>-become president</p>
             <p>-travel a lot</p>
         </div>

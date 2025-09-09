@@ -22,7 +22,7 @@ export default function TaskBar() {
                   <Image src={"/user.jpg"} alt="Profile" width={60} height={60} className={styles.profileImage} />
                   <div className={styles.userInfo}>
                     <h2>Adham Shams</h2>
-                    <p>Unemployed</p>
+                    <p>MSc. Student @ GUC</p>
                   </div>
               </div>
               
