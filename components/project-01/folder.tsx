@@ -99,18 +99,6 @@ export default function BrewBuzz() {
             <div className={styles.subIcon}
               onClick={(e) => {
                 e.stopPropagation();
-                setShowThumbnail(true);
-              }}
-              onMouseDown={(e) => {
-                e.stopPropagation();
-              }}
-            >
-              <Image src={"/image.webp"} alt="Logo" width={45} height={45} />
-              <p>thumbnail.png</p>
-            </div>
-            <div className={styles.subIcon}
-              onClick={(e) => {
-                e.stopPropagation();
                 setShowAbout(true);
               }}
               onMouseDown={(e) => {
@@ -120,6 +108,17 @@ export default function BrewBuzz() {
               <Image src={"/txt.webp"} alt="Logo" width={45} height={45} />
               <p>about.txt</p>
             </div>
+            <a href="/brewbuzz" target="_blank" rel="noopener noreferrer" className={styles.subIcon}
+              onClick={(e) => {
+                e.stopPropagation();
+              }}
+              onMouseDown={(e) => {
+                e.stopPropagation();
+              }}
+            >
+              <Image src={"/case.webp"} alt="Logo" width={45} height={45} />
+              <p>case study</p>
+            </a>
             <a href="https://apps.apple.com/eg/app/brew-buzz/id6738006550" target="_blank" rel="noopener noreferrer" className={styles.subIcon}
               onClick={(e) => {
                 e.stopPropagation();
@@ -152,17 +151,6 @@ export default function BrewBuzz() {
             >
               <Image src={"/internet.webp"} alt="Logo" width={45} height={45} />
               <p>website</p>
-            </a>
-            <a href="/brewbuzz" target="_blank" rel="noopener noreferrer" className={styles.subIcon}
-              onClick={(e) => {
-                e.stopPropagation();
-              }}
-              onMouseDown={(e) => {
-                e.stopPropagation();
-              }}
-            >
-              <Image src={"/case.webp"} alt="Logo" width={45} height={45} />
-              <p>case study</p>
             </a>
           </div>
         </div>
