@@ -14,7 +14,10 @@
 
 // useGLTF.preload("/Untitled.glb");
 
-// export default function BrewBuzz() {
+export default function BrewBuzz() {
+    return(
+        <div />
+    )
 //     return (
 //         <div className={styles.page}>
 //             <div className={styles.header}>
@@ -44,4 +47,4 @@
 //             </div>
 //         </div>
 //     );
-// }
+}
