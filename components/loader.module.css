@@ -10,6 +10,7 @@
     flex-direction: column;
     padding: 32px;
     z-index: 1;
+    font-family: var(--font-ibm-plex-mono), 'IBM Plex Mono', monospace;
 }
 
 .container h5 {

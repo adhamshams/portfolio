@@ -1,6 +1,6 @@
 import styles from "./page.module.css";
 import Paint from "@/components/paint/paint";
-import About from "@/components/about/about";
+import Gallery from "@/components/gallery/gallery";
 import BrewBuzz from "@/components/project-01/folder";
 import Minesweeper from "@/components/minesweeper/minesweeper";
 import Note from "@/components/note/note";
@@ -21,7 +21,7 @@ export default function Desktop() {
           loading="eager"
         />
         <Paint />
-        <About />
+        <Gallery />
         <BrewBuzz />
         <Minesweeper />
         <Note />
