@@ -6,19 +6,19 @@ import styles from './text-overlay.module.css';
 export const sunTexts = [
     {
         type: 'title',
-        content: 'Adham "Shams"'
+        content: 'Adham Shams'
     },
     {
         type: 'paragraph',
-        content: 'In Arabic, "Shams" means sun, the first structure I learned to read. Radiant, complex, and endlessly recomposed. That origin became my lens: a way of looking past surfaces to uncover the patterns beneath.'
+        content: 'In Arabic, “Shams” means sun, the first structure I learned to read. It became my earliest lens, seeing beyond the surface to the patterns underneath.'
     },
     {
         type: 'paragraph',
-        content: 'Design, for me, begins there, inside the architectures hidden in light, music, DNA, books, and movies. Each is a code of rhythms and repetitions waiting to be rearranged. Creation becomes an act of recomposition: taking familiar elements and shaping them into forms that didn\'t exist before.'
+        content: 'My practice began there, in the hidden architectures of light, music, DNA, books, and cinema. Each a system of rhythms waiting to be reshaped into something new.'
     },
     {
         type: 'paragraph',
-        content: 'This is the core of my practice: to look deeper, dismantle the familiar, and build something new from its parts.'
+        content: 'This is my approach: look deeper, break things open, rebuild them with intent.'
     }
 ];
 
@@ -29,20 +29,40 @@ export const earthTexts = [
     },
     {
         type: 'paragraph',
-        content: 'Design unfolds in time. Every scroll, every click, every pause is part of a choreography, a rhythm that shapes perception. My portfolio embraces this as both philosophy and form.'
+        content: 'Design unfolds in time. Every scroll and pause is part of a sequence that shapes how we perceive and feel.'
     },
     {
         type: 'paragraph',
-        content: 'The next world you enter is my portfolio. My portfolio is Windows XP themed, a system that once hummed on my family’s first computer. It was where I first learned to navigate, to experiment, to make things appear on a screen. Choosing it now isn’t nostalgia; it’s recognition that design lives in moments, interfaces, and experiences that linger in memory.'
+        content: 'This world you enter is Windows XP–themed, a return to the system on my family’s first computer, where I first sensed what screens could do.'
     },
     {
         type: 'paragraph',
-        content: 'Here, pixels are more than graphics; they are temporal markers of curiosity, discovery, and play. What begins as a desktop becomes a stage, and every interaction is a beat in the performance of design itself.'
+        content: 'Here, the desktop becomes a stage. Pixels become memories, markers of curiosity, discovery, and play.'
     }
 ];
 
+export const desktopTexts = [
+    {
+        type: 'title',
+        content: 'The Machine'
+    },
+    {
+        type: 'paragraph',
+        content: 'The old desktop represents the spark, the place where I learned that ideas could be built, broken, and rebuilt.'
+    },
+    {
+        type: 'paragraph',
+        content: 'It taught me that design lives in behavior as much as form, and that code can be a creative material.'
+    },
+    {
+        type: 'paragraph',
+        content: 'That early curiosity still drives everything I make today.'
+    }
+];
+
+
 interface TextOverlayProps {
-    stage: 'sun' | 'earth';
+    stage: 'sun' | 'earth' | 'computer';
     onContinue: () => void;
 }
 
@@ -52,7 +72,9 @@ export default function TextOverlay({ stage, onContinue }: TextOverlayProps) {
     const [showButton, setShowButton] = useState(false);
     const [isFadingOut, setIsFadingOut] = useState(false);
 
-    const texts = stage === 'sun' ? sunTexts : earthTexts;
+    let texts = sunTexts;
+    if (stage === 'earth') texts = earthTexts;
+    if (stage === 'computer') texts = desktopTexts;
 
     useEffect(() => {
         // Reset state when stage changes

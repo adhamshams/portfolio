@@ -39,7 +39,7 @@ export default function TaskBar() {
                 
                 <div className={styles.menuSeparator}></div>
                 
-                <a href="/" className={styles.menuItem}>
+                <a href="/user" className={styles.menuItem}>
                   <Image src={"/switch.webp"} alt="About" width={25} height={25} />
                   <span>Switch User</span>
                 </a>
