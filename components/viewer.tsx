@@ -12,7 +12,7 @@ type ModelProps = {
 };
 
 function CameraAnimation({ onAnimationComplete }: { onAnimationComplete: () => void }) {
-  const { camera } = useThree();
+  const { camera, size } = useThree();
   const animationProgress = useRef(0);
   const isAnimating = useRef(true);
   const hasCalledComplete = useRef(false);
@@ -54,8 +54,14 @@ function CameraAnimation({ onAnimationComplete }: { onAnimationComplete: () => v
       // Start and end positions
       const startZ = 600;
       const endZ = 50;
-      // Offset the lookAt target to the right so sun appears on left side of screen
-      const lookAtOffsetX = 20; // Adjust this value to control how far left the sun appears
+      
+      // Calculate lookAtOffsetX dynamically based on screen aspect ratio
+      const pCamera = camera as THREE.PerspectiveCamera;
+      const vFOV = THREE.MathUtils.degToRad(pCamera.fov);
+      const height = 2 * Math.tan(vFOV / 2) * endZ;
+      const aspect = size.width / size.height;
+      const width = height * aspect;
+      const lookAtOffsetX = width / 4;
 
       // Interpolate camera position with easing
       const currentZ = THREE.MathUtils.lerp(startZ, endZ, eased);
@@ -68,7 +74,61 @@ function CameraAnimation({ onAnimationComplete }: { onAnimationComplete: () => v
   return null;
 }
 
-function Model({ onLoaded }: ModelProps) {
+function TransitionAnimation({ onAnimationComplete }: { onAnimationComplete: () => void }) {
+  const { camera, size } = useThree();
+  const animationProgress = useRef(0);
+  const isAnimating = useRef(true);
+  const hasCalledComplete = useRef(false);
+
+  const easeInOutCubic = (t: number): number => {
+    return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  };
+
+  useFrame((state, delta) => {
+    if (isAnimating.current) {
+      const duration = 3;
+      animationProgress.current += delta / duration;
+
+      if (animationProgress.current >= 1) {
+        animationProgress.current = 1;
+        isAnimating.current = false;
+        if (!hasCalledComplete.current) {
+          hasCalledComplete.current = true;
+          onAnimationComplete();
+        }
+      }
+
+      const eased = easeInOutCubic(animationProgress.current);
+
+      // Calculate lookAt offset
+      const pCamera = camera as THREE.PerspectiveCamera;
+      const vFOV = THREE.MathUtils.degToRad(pCamera.fov);
+      const height = 2 * Math.tan(vFOV / 2) * 50; // distance is 50
+      const aspect = size.width / size.height;
+      const width = height * aspect;
+      const lookAtOffset = width / 4;
+
+      // Start: Sun view (0, 0, 50) looking at (lookAtOffset, 0, 0)
+      // End: Earth view (150, 0, 50) looking at (150 + lookAtOffset, 0, 0)
+      
+      const startPos = new THREE.Vector3(0, 0, 50);
+      const endPos = new THREE.Vector3(150, 0, 50);
+      
+      const startLookAt = new THREE.Vector3(lookAtOffset, 0, 0);
+      const endLookAt = new THREE.Vector3(150 + lookAtOffset, 0, 0);
+
+      const currentPos = new THREE.Vector3().lerpVectors(startPos, endPos, eased);
+      const currentLookAt = new THREE.Vector3().lerpVectors(startLookAt, endLookAt, eased);
+
+      camera.position.copy(currentPos);
+      camera.lookAt(currentLookAt);
+    }
+  });
+
+  return null;
+}
+
+function SunModel({ onLoaded }: ModelProps) {
   const { scene } = useGLTF("/sun.glb");
   const modelRef = useRef<THREE.Object3D>(null);
 
@@ -93,9 +153,45 @@ function Model({ onLoaded }: ModelProps) {
   );
 }
 
+function EarthModel({ onLoaded }: ModelProps) {
+  const { scene } = useGLTF("/earth.glb");
+  const modelRef = useRef<THREE.Object3D>(null);
+
+  useEffect(() => {
+    if (scene) {
+      onLoaded();
+    }
+  }, [scene]);
+
+  useFrame((state, delta) => {
+    if (modelRef.current) {
+      modelRef.current.rotation.y += delta * 0.1;
+    }
+  });
+
+  return (
+    <primitive
+      ref={modelRef}
+      object={scene}
+      position={[150, 0, 0]}
+    />
+  );
+}
+
 export default function Viewer() {
-  const [isLoading, setIsLoading] = useState(true);
+  const [sunLoaded, setSunLoaded] = useState(false);
+  const [earthLoaded, setEarthLoaded] = useState(false);
+  const isLoading = !sunLoaded || !earthLoaded;
+  const [stage, setStage] = useState<'sun' | 'transition' | 'earth'>('sun');
   const [cameraAnimationComplete, setCameraAnimationComplete] = useState(false);
+
+  const handleSunContinue = () => {
+    setStage('transition');
+  };
+
+  const handleEarthContinue = () => {
+    window.location.href = "/user";
+  };
 
   return (
     <div style={{ position: 'relative', width: '100%', height: '100vh' }}>
@@ -106,10 +202,25 @@ export default function Viewer() {
       >
         <ambientLight intensity={0.5} />
         <Stars radius={2000} depth={500} count={9000} factor={4} saturation={0} fade={false} speed={1} />
-        <Model onLoaded={() => setIsLoading(false)} />
-        <CameraAnimation onAnimationComplete={() => setCameraAnimationComplete(true)} />
+        <SunModel onLoaded={() => setSunLoaded(true)} />
+        <EarthModel onLoaded={() => setEarthLoaded(true)} />
+        
+        {stage === 'sun' && (
+          <CameraAnimation onAnimationComplete={() => setCameraAnimationComplete(true)} />
+        )}
+        
+        {stage === 'transition' && (
+          <TransitionAnimation onAnimationComplete={() => setStage('earth')} />
+        )}
       </Canvas>
-      {!isLoading && cameraAnimationComplete && <TextOverlay />}
+      
+      {!isLoading && cameraAnimationComplete && stage === 'sun' && (
+        <TextOverlay stage="sun" onContinue={handleSunContinue} />
+      )}
+      
+      {!isLoading && stage === 'earth' && (
+        <TextOverlay stage="earth" onContinue={handleEarthContinue} />
+      )}
     </div>
   );
 }

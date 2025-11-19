@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import styles from './text-overlay.module.css';
 
-const texts = [
+export const sunTexts = [
     {
         type: 'title',
         content: 'Adham "Shams"'
@@ -18,16 +18,49 @@ const texts = [
     },
     {
         type: 'paragraph',
-        content: 'This is where everything started. And it\'s where every project begins.'
+        content: 'This is the core of my practice: to look deeper, dismantle the familiar, and build something new from its parts.'
     }
 ];
 
-export default function TextOverlay() {
+export const earthTexts = [
+    {
+        type: 'title',
+        content: 'The World'
+    },
+    {
+        type: 'paragraph',
+        content: 'Design unfolds in time. Every scroll, every click, every pause is part of a choreography, a rhythm that shapes perception. My portfolio embraces this as both philosophy and form.'
+    },
+    {
+        type: 'paragraph',
+        content: 'The next world you enter is my portfolio. My portfolio is Windows XP themed, a system that once hummed on my family’s first computer. It was where I first learned to navigate, to experiment, to make things appear on a screen. Choosing it now isn’t nostalgia; it’s recognition that design lives in moments, interfaces, and experiences that linger in memory.'
+    },
+    {
+        type: 'paragraph',
+        content: 'Here, pixels are more than graphics; they are temporal markers of curiosity, discovery, and play. What begins as a desktop becomes a stage, and every interaction is a beat in the performance of design itself.'
+    }
+];
+
+interface TextOverlayProps {
+    stage: 'sun' | 'earth';
+    onContinue: () => void;
+}
+
+export default function TextOverlay({ stage, onContinue }: TextOverlayProps) {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [displayedTexts, setDisplayedTexts] = useState<number[]>([]);
     const [showButton, setShowButton] = useState(false);
+    const [isFadingOut, setIsFadingOut] = useState(false);
+
+    const texts = stage === 'sun' ? sunTexts : earthTexts;
 
     useEffect(() => {
+        // Reset state when stage changes
+        setCurrentIndex(0);
+        setDisplayedTexts([]);
+        setShowButton(false);
+        setIsFadingOut(false);
+
         // Start showing first text immediately
         setDisplayedTexts([0]);
 
@@ -55,12 +88,13 @@ export default function TextOverlay() {
         return () => {
             timers.forEach(timer => clearTimeout(timer));
         };
-    }, []);
+    }, [stage, texts]);
 
     const handleContinue = () => {
-        // TODO: Implement camera pan to second model
-        // For now route to /user page
-        window.location.href = "/user";
+        setIsFadingOut(true);
+        setTimeout(() => {
+            onContinue();
+        }, 500); // Match CSS animation duration
     };
 
     return (
@@ -71,8 +105,11 @@ export default function TextOverlay() {
 
                 return (
                     <div
-                        key={index}
-                        className={`${styles.text} ${isVisible ? (isCurrent ? styles.fadeIn : styles.visible) : styles.hidden}`}
+                        key={`${stage}-${index}`}
+                        className={`${styles.text} 
+                            ${isFadingOut ? styles.fadeOut : ''} 
+                            ${isVisible && !isFadingOut ? (isCurrent ? styles.fadeIn : styles.visible) : ''} 
+                            ${!isVisible ? styles.hidden : ''}`}
                     >
                         {text.type === 'title' ? (
                             <h1 className={styles.title}>{text.content}</h1>
@@ -83,7 +120,10 @@ export default function TextOverlay() {
                 );
             })}
             <button
-                className={`${styles.button} ${showButton ? styles.fadeInButton : styles.hidden}`}
+                className={`${styles.button} 
+                    ${isFadingOut ? styles.fadeOut : ''}
+                    ${showButton && !isFadingOut ? styles.fadeInButton : ''} 
+                    ${!showButton ? styles.hidden : ''}`}
                 onClick={handleContinue}
             >
                 Continue
