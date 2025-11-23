@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from "@vercel/analytics/next"
 import { IBM_Plex_Mono } from "next/font/google";
-import Overlay from "@/components/overlay";
+import LayoutWrapper from "@/components/layout-wrapper";
 import "./globals.css";
 
 const ibmPlexMono = IBM_Plex_Mono({
@@ -28,9 +28,10 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
       </head>
       <body>
-        {children}
+        <LayoutWrapper>
+          {children}
+        </LayoutWrapper>
         <SpeedInsights />
-        <Overlay />
         <Analytics />
       </body>
     </html>

@@ -13,16 +13,16 @@ export default function Loader() {
             <div className={styles.hardwareInfo}>
                 <p className={styles.settingHeader}>STARTING SERVICES (0/3)...</p>
                 <div className={styles.settingRow}>
-                    <p>- frontend_engineer.exe</p>
-                    <p className={styles.running}>... LOADING</p>
+                    <p>- service 0183</p>
+                    <p className={styles.running}>... initializing</p>
                 </div>
                 <div className={styles.settingRow}>
-                    <p>- creative_coder.dll</p>
-                    <p className={styles.running}>... LOADING</p>
+                    <p>- the sun 23021</p>
+                    <p className={styles.running}>... initializing</p>
                 </div>
                 <div className={styles.settingRow}>
-                    <p>- designer.sys</p>
-                    <p className={styles.running}>... LOADING</p>
+                    <p>- computer 203021</p>
+                    <p className={styles.running}>... initializing</p>
                 </div>
             </div>
             <p className={styles.timestamp}>{new Date().toDateString()}</p>
