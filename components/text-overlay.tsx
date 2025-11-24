@@ -33,11 +33,11 @@ export const earthTexts = [
     },
     {
         type: 'paragraph',
-        content: 'This world you enter is Windows XP–themed, a return to the system on my family’s first computer, where I first sensed what screens could do.'
+        content: 'This world you enter is a journey through memory and discovery, where each interaction reveals something new.'
     },
     {
         type: 'paragraph',
-        content: 'Here, the desktop becomes a stage. Pixels become memories, markers of curiosity, discovery, and play.'
+        content: 'Here, the screen becomes a stage. Pixels become memories, markers of curiosity, discovery, and play.'
     }
 ];
 
@@ -48,15 +48,15 @@ export const desktopTexts = [
     },
     {
         type: 'paragraph',
+        content: 'This Windows XP-themed portfolio interface is a return to the system on my family\'s first computer, where I first sensed what screens could do.'
+    },
+    {
+        type: 'paragraph',
         content: 'The old desktop represents the spark, the place where I learned that ideas could be built, broken, and rebuilt.'
     },
     {
         type: 'paragraph',
         content: 'It taught me that design lives in behavior as much as form, and that code can be a creative material.'
-    },
-    {
-        type: 'paragraph',
-        content: 'That early curiosity still drives everything I make today.'
     }
 ];
 
