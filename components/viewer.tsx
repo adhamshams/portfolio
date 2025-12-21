@@ -346,13 +346,6 @@ function ComputerModel({ onLoaded }: ModelProps) {
     }
   }, [scene]);
 
-  useFrame((state) => {
-    if (modelRef.current && !dragging) {
-      const t = state.clock.getElapsedTime();
-      modelRef.current.position.y = Math.sin(t * 0.9) * 1;
-    }
-  });
-
   return (
     <primitive
       ref={modelRef}

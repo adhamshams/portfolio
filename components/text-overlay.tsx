@@ -148,7 +148,7 @@ export default function TextOverlay({ stage, onContinue }: TextOverlayProps) {
                     ${!showButton ? styles.hidden : ''}`}
                 onClick={handleContinue}
             >
-                Continue
+                [Continue]
             </button>
         </div>
     );
