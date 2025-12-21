@@ -1,0 +1,24 @@
+.container {
+    position: absolute;
+    top: 5%;
+    right: 3%;
+    width: 20vw;
+    background-color: #fef49b;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: grab;
+    user-select: none;
+    padding: 12px;
+    gap: 8px;
+    padding-bottom: 60px;
+}
+
+.grabbing {
+    cursor: grabbing !important;
+}
+
+.complete {
+    text-decoration: line-through;
+    color: #888;
+}

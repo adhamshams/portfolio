@@ -1,0 +1,118 @@
+.overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 2rem;
+    text-align: left;
+}
+
+.text {
+    color: white;
+    font-family: var(--font-ibm-plex-mono), 'IBM Plex Mono', monospace;
+    line-height: 1.6;
+}
+
+.text.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.text.visible {
+    opacity: 1;
+}
+
+.text.fadeIn {
+    animation: fadeIn 0.5s ease-in forwards;
+}
+
+.fadeOut {
+    animation: fadeOut 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInButton {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+}
+
+.title {
+    font-size: 3rem;
+    font-weight: 400;
+    margin-bottom: 2rem;
+    min-height: 1.2em;
+}
+
+.paragraph {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+    min-height: 1.6em;
+}
+
+.button {
+    font-size: 1.1rem;
+    margin-top: .5rem;
+    font-weight: 300;
+    min-height: 1.6em;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+    text-transform: uppercase;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: var(--font-ibm-plex-mono), 'IBM Plex Mono', monospace;
+    background: transparent;
+    border: none;
+}
+
+.button.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.button.fadeInButton {
+    pointer-events: auto;
+    animation: fadeInButton 0.5s ease-in forwards;
+}
+
+.button:hover {
+    color: rgba(255, 255, 255, 0.8);
+}

@@ -1,0 +1,213 @@
+.icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    gap: 8px;
+    cursor: pointer;
+    padding: 8px 4px;
+    width: 110px;
+    margin-top: 3.5vh;
+    margin-left: 1.5vw;
+    user-select: none;
+}
+
+.icon:hover {
+    background-color: rgba(255, 255, 255, .2);
+}
+
+.icon h2 {
+    font-size: 12px;
+}
+
+.container {
+    position: absolute;
+    bottom: 12%;
+    left: 15%;
+    width: 50vw;
+    height: 60vh;
+    border: 1px solid #025aee;
+    background-color: #025aee;
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    animation: scaleIn 0.2s ease-out forwards;
+    transform-origin: center;
+}
+
+.container.closing {
+    animation: scaleOut 0.2s ease-in forwards;
+}
+
+@keyframes scaleIn {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes scaleOut {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(0);
+        opacity: 0;
+    }
+}
+
+.nav {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    cursor: grab;
+    user-select: none;
+    padding: 4px 4px;
+}
+
+.title {
+    color: white;
+    font-size: 12px;
+    margin-left: 4px;
+}
+
+.close {
+    margin-left: auto;
+    cursor: pointer;
+    transition: filter 0.2s ease;
+}
+
+.close:hover {
+    filter: brightness(1.3) saturate(1.2) hue-rotate(0deg);
+}
+
+.grabbing {
+    cursor: grabbing !important;
+}
+
+.canvas {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex: 1;
+    box-shadow: inset 5px 5px 10px #868485;
+    background: linear-gradient(-90deg, rgba(0, 0, 0, .02) 1px, transparent 0), linear-gradient(rgba(0, 0, 0, .02) 1px, transparent 0), linear-gradient(-90deg, rgba(0, 0, 0, .02) 1px, transparent 0), linear-gradient(rgba(0, 0, 0, .02) 1px, transparent 0), linear-gradient(transparent 7.5px, #f8f8f8 0, #f8f8f8 195px, transparent 0), linear-gradient(-90deg, hsla(0, 0%, 67%, .3) 1px, transparent 0), linear-gradient(-90deg, transparent 7.5px, #f8f8f8 0, #f8f8f8 195px, transparent 0), linear-gradient(hsla(0, 0%, 67%, .3) 1px, transparent 0), #f8f8f8;
+    background-size: 10px 10px, 10px 10px, 200px 200px, 200px 200px, 200px 200px, 200px 200px, 200px 200px, 200px 200px;
+    background-position: calc(50% + 5px) 0, calc(50% + 5px) 0, calc(50% + 100px) 0, calc(50% + 100px) 0, calc(50% + 100px) 0, calc(50% + 100px) 0, calc(50% + 100px) 0, calc(50% + 100px) 0;
+}
+
+.canvas svg {
+    width: 100%;
+    height: 100%;
+}
+
+.canvas svg path {
+    stroke-dasharray: 2000;
+    stroke-dashoffset: 2000;
+}
+
+.canvas svg path:nth-of-type(1) {
+    animation: dash 3s linear forwards;
+}
+
+.canvas svg path:nth-of-type(2) {
+    animation: dash 5s linear 1.5s forwards;
+}
+
+.canvas svg path:nth-of-type(3) {
+    animation: dash 5s linear 2s forwards;
+}
+
+.canvas svg path:nth-of-type(4) {
+    animation: dash 5s linear 2.5s forwards;
+}
+
+.canvas svg path:nth-of-type(5) {
+    animation: dash 5s linear 3s forwards;
+}
+
+.canvas svg path:nth-of-type(6) {
+    animation: dash 5s linear 3.5s forwards;
+}
+
+.canvas svg path:nth-of-type(7) {
+    animation: dash 5s linear 4s forwards;
+}
+
+.canvas svg path:nth-of-type(8) {
+    animation: dash 10s linear 4.5s forwards;
+}
+
+.canvas svg path:nth-of-type(9) {
+    animation: dash 10s linear 5.5s forwards;
+}
+
+.canvas svg path:nth-of-type(10) {
+    animation: dash 10s linear 7s forwards;
+}
+
+.canvas svg path:nth-of-type(11) {
+    animation: dash 10s linear 16.5s forwards;
+}
+
+@keyframes dash {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+.colorPicker {
+    display: flex;
+    align-items: center;
+    background-color: #eceadb;
+    padding: 10px 10px;
+    width: 100%;
+    border-top: 2px solid #aaaa9d;
+}
+
+.selectedColor {
+    padding: 10px;
+    background-color: #ebe8de;
+    box-shadow: inset 0px 0px 5px #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.colorBox {
+    padding: 10px;
+    border: 2px solid #ece8e3;
+}
+
+.colorPalette {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-rows: auto auto;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 4px;
+    margin-left: 4px;
+}
+
+.color {
+    padding: 10px;
+    cursor: pointer;
+    box-shadow: inset 0px 0px 5px #000;
+}
+
+.tip {
+    display: flex;
+    align-items: center;
+    padding: 10px 10px;
+    background-color: #eceadb;
+    border-top: 2px solid #aaaa9d;
+    width: 100%;
+    color: #000;
+    font-size: 12px;
+}

@@ -1,0 +1,133 @@
+.container {
+    height: 5vh;
+    width: 100vw;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: #2462dc;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1500;
+}
+
+.startContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    background-color: #47a445;
+    gap: 8px;
+    border-right: 1px solid #000;
+    cursor: pointer;
+    padding-left: 24px;
+    padding-right: 24px;
+    position: relative;
+}
+
+.startContainer:hover {
+    background-color: #3b8c3a;
+}
+
+.startContainer h2 {
+    color: #fff;
+    font-size: 16px;
+}
+
+.startMenu {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    width: 300px;
+    border-radius: 8px 8px 0 0;
+    background-color: #316ac5;
+    animation: slideUp 0.2s ease-out;
+    display: flex;
+    flex-direction: column;
+    cursor: default;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.startMenuHeader {
+    padding: 12px 12px;
+    border-bottom: 1px solid #c5c5c5;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.profileImage {
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+.userInfo h2 {
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.userInfo p {
+    color: #e6f0ff;
+    font-size: 12px;
+    margin: 2px 0 0 0;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.startMenuContent {
+    padding: 8px 0;
+    background-color: #ffffff;
+}
+
+.menuItem {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 12px;
+    color: #000000;
+    transition: background-color 0.1s ease;
+}
+
+.menuItem:hover {
+    background-color: #316ac5;
+    color: #ffffff;
+}
+
+.menuSeparator {
+    height: 1px;
+    background-color: #c5c5c5;
+    margin: 4px 12px;
+}
+
+.timeContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    background-color: #0c9df2;
+    padding-left: 12px;
+    padding-right: 12px;
+    color: #fff;
+    border-left: 1px solid #000;
+}
+
+.timeContainer h2 {
+    font-size: 16px;
+}

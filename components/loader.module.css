@@ -1,0 +1,64 @@
+.container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 32px;
+    z-index: 1;
+    font-family: var(--font-ibm-plex-mono), 'IBM Plex Mono', monospace;
+}
+
+.container h5 {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.container p {
+    font-size: 18px;
+}
+
+.hardwareInfo {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.top {
+    margin-top: 24px;
+}
+
+.settingHeader {
+    margin-bottom: 20px;
+}
+
+.settingRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 30%;
+    margin-left: 32px;
+}
+
+.timestamp {
+    margin-top: auto;
+}
+
+.running {
+    color: #dc6f31;
+    animation: blink 1.2s infinite;
+}
+
+@keyframes blink {
+    0%, 50% {
+        opacity: 1;
+    }
+    51%, 100% {
+        opacity: 0;
+    }
+}
