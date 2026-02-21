@@ -387,7 +387,7 @@ export default function Viewer() {
       {isLoading && <Loader />}
       <Canvas
         style={{ height: "100vh", background: "#000" }}
-        camera={{ position: [0, 0, 50], fov: 50, far: 5000, near: 0.1 }}
+        camera={{ position: [0, 0, 600], fov: 50, far: 5000, near: 0.1 }}
       >
         <ambientLight intensity={1} />
         <Stars radius={2000} depth={500} count={9000} factor={4} saturation={0} fade={false} speed={1} />
@@ -395,7 +395,7 @@ export default function Viewer() {
         <EarthModel onLoaded={() => setEarthLoaded(true)} />
         <ComputerModel onLoaded={() => setComputerLoaded(true)} />
         
-        {stage === 'sun' && (
+        {!isLoading && stage === 'sun' && (
           <CameraAnimation onAnimationComplete={() => setCameraAnimationComplete(true)} />
         )}
         
