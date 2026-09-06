@@ -1,7 +1,5 @@
-import Viewer from "@/components/viewer";
+import SolarViewer from "@/components/solar/viewer";
 
 export default function Home() {
-  return (
-    <Viewer />
-  )
+  return <SolarViewer />;
 }

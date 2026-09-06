@@ -1,0 +1,257 @@
+/* Header tile: solid colored block with wide uppercase type */
+.title {
+    display: inline-block;
+    background: var(--tone, var(--hal-red-dark));
+    color: #fff;
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 12px 18px;
+    margin-bottom: 8px;
+}
+
+/* Tiny readout line, e.g. "PRJ 038" */
+.code {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 8px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    opacity: 0.8;
+}
+
+/* Thin white-bordered readout box */
+.box {
+    border: 1px solid var(--hal-line);
+    background: #000;
+    padding: 16px 18px;
+    margin-bottom: 8px;
+}
+
+.paragraph {
+    font-size: 0.95rem;
+    font-weight: 300;
+    line-height: 1.65;
+    margin-bottom: 0.9rem;
+}
+
+.paragraph:last-child,
+.line:last-child .paragraph {
+    margin-bottom: 0;
+}
+
+.line .paragraph {
+    margin-bottom: 0.9rem;
+}
+
+.line:last-child .paragraph {
+    margin-bottom: 0;
+}
+
+.todo {
+    font-family: var(--font-display);
+    font-size: 8px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--hal-red);
+    margin-right: 0.6rem;
+}
+
+/* Sequential text reveal */
+.line {
+    opacity: 0;
+}
+
+.lineIn {
+    animation: lineFadeIn 0.5s ease-out forwards;
+}
+
+@keyframes lineFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+        filter: blur(4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
+}
+
+/* Action tile, e.g. BOOT */
+.button {
+    display: inline-block;
+    background: var(--hal-red);
+    color: #fff;
+    border: none;
+    font-family: var(--font-display);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 12px 18px;
+    margin-top: 8px;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.button.buttonIn {
+    animation: lineFadeIn 0.5s ease-out forwards;
+    pointer-events: auto;
+}
+
+.button:hover,
+.button:focus-visible {
+    background: #fff;
+    color: var(--hal-red);
+    outline: none;
+}
+
+/* Project cards: colored header tile + bordered body */
+.card {
+    margin-bottom: 10px;
+}
+
+.cardHeader {
+    background: var(--tone, var(--hal-navy));
+    padding: 10px 14px 11px;
+}
+
+.cardTitle {
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-top: 4px;
+}
+
+.role {
+    font-family: var(--font-display);
+    font-size: 8px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    opacity: 0.85;
+    margin-bottom: 0.8rem;
+}
+
+.cardBody {
+    border: 1px solid var(--hal-line);
+    border-top: none;
+    padding: 14px 16px;
+}
+
+.chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin: 0.9rem 0 0.6rem;
+}
+
+.chip {
+    font-family: var(--font-display);
+    font-size: 7px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 5px 8px;
+    background: var(--hal-grey);
+    color: #fff;
+}
+
+/* Link tiles */
+.links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 4px;
+}
+
+.link {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--hal-blue);
+    padding: 10px 12px;
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.link:hover,
+.link:focus-visible {
+    background: #fff;
+    color: var(--hal-blue);
+    outline: none;
+}
+
+/* Work timeline: stacked bordered readouts */
+.timeline {
+    list-style: none;
+}
+
+.entry {
+    border: 1px solid var(--hal-line);
+    padding: 14px 16px;
+    margin-bottom: 8px;
+}
+
+.entry.entryTodo {
+    border-style: dashed;
+    opacity: 0.75;
+}
+
+.period {
+    font-family: var(--font-display);
+    font-size: 8px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--hal-blue);
+    margin-bottom: 6px;
+}
+
+.entryHeader {
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+}
+
+.bullets {
+    padding-left: 1.1rem;
+    margin-top: 0.6rem;
+    font-weight: 300;
+    line-height: 1.55;
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+@media (max-width: 1024px) {
+    .title {
+        font-size: 1.05rem;
+        padding: 10px 14px;
+    }
+
+    .box {
+        padding: 12px 14px;
+    }
+
+    .paragraph {
+        font-size: 0.9rem;
+    }
+
+    .entryHeader,
+    .cardTitle {
+        font-size: 0.8rem;
+    }
+}

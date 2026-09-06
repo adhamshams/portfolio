@@ -1,7 +1,7 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from "@vercel/analytics/next"
-import { IBM_Plex_Mono } from "next/font/google";
+import { IBM_Plex_Mono, Michroma } from "next/font/google";
 import LayoutWrapper from "@/components/layout-wrapper";
 import "./globals.css";
 
@@ -11,9 +11,22 @@ const ibmPlexMono = IBM_Plex_Mono({
   variable: '--font-ibm-plex-mono',
 });
 
+const michroma = Michroma({
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-michroma',
+});
+
 export const metadata: Metadata = {
   title: "Adham Shams",
   description: "Personal website of Adham Shams",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: "#000000",
 };
 
 export default function RootLayout({
@@ -22,7 +35,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={ibmPlexMono.variable}>
+    <html lang="en" className={`${ibmPlexMono.variable} ${michroma.variable}`}>
       <head>
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />

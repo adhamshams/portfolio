@@ -1,0 +1,63 @@
+.viewer {
+    --hal-red: #b3121a;
+    --hal-red-dark: #7a1116;
+    --hal-blue: #1e5fe0;
+    --hal-navy: #123a6b;
+    --hal-grey: #5b5b5b;
+    --hal-grey-light: #8a8a8a;
+    --hal-line: rgba(255, 255, 255, 0.85);
+    --font-display: var(--font-michroma), 'Eurostile', 'Michroma', 'Helvetica Neue', sans-serif;
+    --font-mono: var(--font-ibm-plex-mono), 'IBM Plex Mono', monospace;
+
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+    background: #000;
+    color: #fff;
+    touch-action: manipulation;
+    font-family: var(--font-mono);
+}
+
+/* Floating body labels: thin white-bordered boxes, HAL readout style */
+.label {
+    font-family: var(--font-display);
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #fff;
+    background: #000;
+    border: 1px solid var(--hal-line);
+    padding: 6px 9px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    cursor: pointer;
+    transition: opacity 0.45s ease, background-color 0.2s ease, color 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.label.labelVisible {
+    opacity: 0.95;
+    pointer-events: auto;
+}
+
+/* Highlight is driven by the planet's shared hover state, so body and label light up together */
+.label.labelActive {
+    opacity: 1;
+    background: #fff;
+    color: #000;
+}
+
+.label:focus-visible {
+    outline: none;
+}
+
+@media (max-width: 768px) {
+    .label {
+        font-size: 7px;
+        letter-spacing: 0.12em;
+        padding: 5px 6px;
+    }
+}
