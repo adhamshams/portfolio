@@ -60,7 +60,7 @@
     .hud {
         top: 12px;
         left: 12px;
-        flex-direction: row;
+        /* Stack the clock under the name plate and let it share that plate's width. */
         align-items: stretch;
     }
 
