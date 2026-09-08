@@ -1,7 +1,7 @@
 'use client';
 
 import type { CSSProperties } from 'react';
-import { PLANETS, type FocusId } from '@/data/planets';
+import { PLANETS, planetOfFocus, type FocusId } from '@/data/planets';
 import styles from './system-nav.module.css';
 
 interface SystemNavProps {
@@ -18,6 +18,8 @@ const ITEMS: { id: FocusId; name: string; code: string; tile: string }[] = [
 ];
 
 export default function SystemNav({ focus, enabled, visible, onSelect }: SystemNavProps) {
+  // The screen close-up belongs to the computer's tile.
+  const pressed: FocusId = planetOfFocus(focus) ?? focus;
   return (
     <nav className={`${styles.nav} ${visible ? styles.visible : ''}`} aria-label="Solar system">
       {ITEMS.map((item) => (
@@ -26,7 +28,7 @@ export default function SystemNav({ focus, enabled, visible, onSelect }: SystemN
           type="button"
           className={styles.item}
           style={{ '--tile': item.tile } as CSSProperties}
-          aria-pressed={focus === item.id}
+          aria-pressed={pressed === item.id}
           disabled={!enabled}
           onClick={() => onSelect(item.id)}
         >

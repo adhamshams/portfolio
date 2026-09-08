@@ -3,8 +3,6 @@ export const aboutTitle = 'About';
 export const aboutParagraphs: string[] = [
   'I am Adham Shams, a computer science and engineering graduate who designs and builds digital products end to end: interface, motion, mobile and web.',
   'Design unfolds in time. Every scroll and pause is part of a sequence that shapes how we perceive and feel. I treat the screen as a stage, where pixels become markers of curiosity, discovery, and play.',
-  // TODO: replace with a real bio paragraph (background, what you are working on now, what you are looking for).
-  'TODO: add a short personal paragraph here.',
 ];
 
 export const contact = {

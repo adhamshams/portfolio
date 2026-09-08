@@ -269,7 +269,7 @@ export default function Minesweeper() {
     return (
         <div>
             <div className={styles.icon} onClick={() => setVisible(true)}>
-                <Image src={"/minesweeper.webp"} alt="Logo" width={45} height={45} />
+                <Image loading="eager" src={"/minesweeper.webp"} alt="Logo" width={45} height={45} />
                 <h2>Minesweeper</h2>
             </div>
             {visible && (
@@ -282,7 +282,7 @@ export default function Minesweeper() {
                         onMouseDown={handleMouseDown}
                         className={`${styles.nav} ${isDragging ? styles.grabbing : ""}`}
                     >
-                        <Image src={"/minesweeper.webp"} alt="Logo" width={20} height={20} />
+                        <Image loading="eager" src={"/minesweeper.webp"} alt="Logo" width={20} height={20} />
                         <h2 className={styles.title}>Minesweeper</h2>
                         <div className={styles.close}
                             onClick={(e) => {
@@ -293,7 +293,7 @@ export default function Minesweeper() {
                                 e.stopPropagation();
                             }}
                         >
-                            <Image src={"/exit.webp"} alt="Close" width={25} height={25} />
+                            <Image loading="eager" src={"/exit.webp"} alt="Close" width={25} height={25} />
                         </div>
                     </div>
                     <div className={styles.canvas}>
@@ -302,7 +302,7 @@ export default function Minesweeper() {
                                 {flagCount.toString().padStart(3, '0')}
                             </div>
                             <div className={styles.resetCell} onClick={resetGame}>
-                                <Image src={"/smiley.png"} alt="Reset" width={25} height={25} />
+                                <Image loading="eager" src={"/smiley.png"} alt="Reset" width={25} height={25} />
                             </div>
                             <div className={styles.analogDisplay}>
                                 {timer.toString().padStart(3, '0')}

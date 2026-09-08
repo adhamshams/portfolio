@@ -38,16 +38,7 @@
     margin-bottom: 0.9rem;
 }
 
-.paragraph:last-child,
-.line:last-child .paragraph {
-    margin-bottom: 0;
-}
-
-.line .paragraph {
-    margin-bottom: 0.9rem;
-}
-
-.line:last-child .paragraph {
+.paragraph:last-child {
     margin-bottom: 0;
 }
 
@@ -58,29 +49,6 @@
     text-transform: uppercase;
     color: var(--hal-red);
     margin-right: 0.6rem;
-}
-
-/* Sequential text reveal */
-.line {
-    opacity: 0;
-}
-
-.lineIn {
-    animation: lineFadeIn 0.5s ease-out forwards;
-}
-
-@keyframes lineFadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(8px);
-        filter: blur(4px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-        filter: blur(0);
-    }
 }
 
 /* Action tile, e.g. BOOT */
@@ -96,15 +64,8 @@
     padding: 12px 18px;
     margin-top: 8px;
     cursor: pointer;
-    opacity: 0;
-    pointer-events: none;
     transition: background-color 0.2s ease, color 0.2s ease;
     -webkit-tap-highlight-color: transparent;
-}
-
-.button.buttonIn {
-    animation: lineFadeIn 0.5s ease-out forwards;
-    pointer-events: auto;
 }
 
 .button:hover,
@@ -114,14 +75,16 @@
     outline: none;
 }
 
-/* Project cards: colored header tile + bordered body */
+/* Project cards: a colored title tile over a bordered box, like the About panel */
 .card {
-    margin-bottom: 10px;
+    margin-bottom: 1.25rem;
 }
 
 .cardHeader {
+    display: inline-block;
     background: var(--tone, var(--hal-navy));
     padding: 10px 14px 11px;
+    margin-bottom: 8px;
 }
 
 .cardTitle {
@@ -144,15 +107,15 @@
 
 .cardBody {
     border: 1px solid var(--hal-line);
-    border-top: none;
-    padding: 14px 16px;
+    background: #000;
+    padding: 16px 18px;
 }
 
 .chips {
     display: flex;
     flex-wrap: wrap;
     gap: 4px;
-    margin: 0.9rem 0 0.6rem;
+    margin-top: 0.9rem;
 }
 
 .chip {
@@ -165,6 +128,35 @@
     color: #fff;
 }
 
+/* Primary card action: the long-form write-up */
+.caseStudy {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-family: var(--font-display);
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--hal-red);
+    padding: 10px 12px;
+    margin-top: 4px;
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.caseStudy:hover,
+.caseStudy:focus-visible {
+    background: #fff;
+    color: var(--hal-red);
+    outline: none;
+}
+
+.caseStudy:hover .linkIcon,
+.caseStudy:focus-visible .linkIcon {
+    transform: translateX(2px);
+}
+
 /* Link tiles */
 .links {
     display: flex;
@@ -174,7 +166,9 @@
 }
 
 .link {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
     font-family: var(--font-display);
     font-size: 9px;
     letter-spacing: 0.14em;
@@ -193,7 +187,19 @@
     outline: none;
 }
 
-/* Work timeline: stacked bordered readouts */
+.linkIcon {
+    width: 12px;
+    height: 12px;
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+}
+
+.link:hover .linkIcon:last-child,
+.link:focus-visible .linkIcon:last-child {
+    transform: translate(2px, -2px);
+}
+
+/* Experience timeline: stacked bordered readouts */
 .timeline {
     list-style: none;
 }

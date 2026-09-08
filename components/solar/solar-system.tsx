@@ -4,10 +4,11 @@ import { useMemo, useRef, type RefObject } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { Line, useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
-import { MODEL_URLS, PLANETS, type FocusId, type ModelKey, type Phase, type PlanetId } from '@/data/planets';
+import { MODEL_URLS, PLANETS, planetOfFocus, type FocusId, type ModelKey, type Phase, type PlanetId } from '@/data/planets';
 import { getLayout, planetPosition } from './camera-math';
 import Sun from './sun';
-import Planet from './planet';
+import Planet, { type Orientation } from './planet';
+import type { ScreenPower } from './computer-screen';
 
 useGLTF.preload(MODEL_URLS.sun);
 useGLTF.preload(MODEL_URLS.computer);
@@ -17,8 +18,18 @@ interface SolarSystemProps {
   phase: Phase;
   /** Shared orbit clock, advanced here and read by the camera rig. */
   orbitTime: RefObject<number>;
+  /** Filled with the computer's screen anchor once its model is in the scene. */
+  screenRef: RefObject<THREE.Object3D | null>;
+  screenPower: ScreenPower;
   onSelect: (id: FocusId) => void;
   onLoaded: (key: ModelKey) => void;
+}
+
+/** Orbit clock speed: full in the overview, a slow drift when a body is focused, frozen on the screen. */
+function orbitSpeedFor(focus: FocusId): number {
+  if (focus === 'overview') return 1;
+  if (focus === 'screen') return 0;
+  return 0.2;
 }
 
 function OrbitRing({ radius, tilt, dim }: { radius: number; tilt: number; dim: boolean }) {
@@ -33,17 +44,23 @@ function OrbitRing({ radius, tilt, dim }: { radius: number; tilt: number; dim: b
   return <Line points={points} color="#ffffff" lineWidth={1} transparent opacity={dim ? 0.06 : 0.18} rotation={[tilt, 0, 0]} />;
 }
 
-export default function SolarSystem({ focus, phase, orbitTime, onSelect, onLoaded }: SolarSystemProps) {
+export default function SolarSystem({ focus, phase, orbitTime, screenRef, screenPower, onSelect, onLoaded }: SolarSystemProps) {
   const groupRefs = useRef<Partial<Record<PlanetId, THREE.Group | null>>>({});
   const ringsRef = useRef<THREE.Group>(null);
   const timeScale = useRef(1);
   const idle = phase === 'idle';
   const showLabels = idle && focus === 'overview';
+  const focusedPlanet = planetOfFocus(focus);
+
+  const orientationFor = (id: PlanetId): Orientation => {
+    if (id !== focusedPlanet) return 'spin';
+    return focus === 'screen' && idle ? 'hold' : 'face';
+  };
 
   useFrame((state, delta) => {
     const layout = getLayout(state.size.width / state.size.height);
     // Planets keep drifting slowly while one is focused so the system never looks frozen.
-    timeScale.current = THREE.MathUtils.damp(timeScale.current, focus === 'overview' ? 1 : 0.2, 2, delta);
+    timeScale.current = THREE.MathUtils.damp(timeScale.current, orbitSpeedFor(focus), 2, delta);
     orbitTime.current += delta * timeScale.current;
 
     for (const planet of PLANETS) {
@@ -67,13 +84,16 @@ export default function SolarSystem({ focus, phase, orbitTime, onSelect, onLoade
         <Planet
           key={planet.id}
           config={planet}
-          interactive={idle && focus !== planet.id}
+          interactive={idle && focusedPlanet !== planet.id}
           showLabel={showLabels}
+          orientation={orientationFor(planet.id)}
+          screenPower={screenPower}
           onSelect={onSelect}
           onLoaded={onLoaded}
           groupRef={(group) => {
             groupRefs.current[planet.id] = group;
           }}
+          screenRef={planet.screen ? screenRef : undefined}
         />
       ))}
     </>

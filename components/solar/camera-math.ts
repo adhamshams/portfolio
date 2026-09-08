@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { SYSTEM_RADIUS, type PlanetConfig } from '@/data/planets';
+import { SYSTEM_RADIUS, type PlanetConfig, type ScreenConfig } from '@/data/planets';
 
 export interface Layout {
   /** Aspect < 1: orbits are compressed and bodies enlarged so the system reads on a phone. */
@@ -141,4 +141,33 @@ export function planetCamera(
   const halfHeight = tanV * dist;
   const halfWidth = halfHeight * aspect;
   outLook.copy(bodyPos).addScaledVector(right, -ndcX * halfWidth).addScaledVector(camUp, -ndcY * halfHeight);
+}
+
+const screenQuat = new THREE.Quaternion();
+const screenScale = new THREE.Vector3();
+
+/**
+ * Camera looking straight at the CRT glass along its normal, close enough that the whole
+ * glass fills `fill` of the viewport's limiting dimension. Because the anchor's up is world Y
+ * and the normal is horizontal, the page lands on screen as an upright, undistorted rectangle.
+ */
+export function screenCamera(
+  anchor: THREE.Object3D,
+  screen: ScreenConfig,
+  aspect: number,
+  fovDeg: number,
+  layout: Layout,
+  outPos: THREE.Vector3,
+  outLook: THREE.Vector3
+): void {
+  anchor.getWorldPosition(outLook);
+  anchor.getWorldQuaternion(screenQuat);
+  anchor.getWorldScale(screenScale);
+  const normal = tmpA.set(0, 0, 1).applyQuaternion(screenQuat);
+  const halfW = (screen.width * screenScale.x) / 2;
+  const halfH = (screen.height * screenScale.y) / 2;
+  const tanV = Math.tan(THREE.MathUtils.degToRad(fovDeg) / 2);
+  const fill = layout.portrait ? 0.9 : 0.8;
+  const dist = Math.max(halfH / (tanV * fill), halfW / (tanV * aspect * fill));
+  outPos.copy(outLook).addScaledVector(normal, dist);
 }

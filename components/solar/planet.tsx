@@ -4,27 +4,45 @@ import { Suspense, useEffect, useMemo, useRef, useState, type Ref } from 'react'
 import { useFrame, type ThreeEvent } from '@react-three/fiber';
 import { Html } from '@react-three/drei';
 import * as THREE from 'three';
-import { MODEL_URLS, type ModelKey, type PlanetConfig, type PlanetId } from '@/data/planets';
+import { MODEL_URLS, type ModelKey, type PlanetConfig, type PlanetId, type ScreenConfig } from '@/data/planets';
 import { useCenteredModel } from './use-centered-model';
 import { getGlowTexture } from './glow-texture';
+import ComputerScreen, { type ScreenPower } from './computer-screen';
 import styles from './solar.module.css';
+
+/**
+ * spin: idle self-rotation.
+ * face: turn so the screen points at the camera (while the computer is focused or being flown to).
+ * hold: keep the current heading so the framed screen stays perfectly still.
+ */
+export type Orientation = 'spin' | 'face' | 'hold';
 
 interface PlanetProps {
   config: PlanetConfig;
   interactive: boolean;
   showLabel: boolean;
+  orientation: Orientation;
+  screenPower: ScreenPower;
   onSelect: (id: PlanetId) => void;
   onLoaded: (key: ModelKey) => void;
   groupRef: Ref<THREE.Group>;
+  /** Receives the screen anchor object so the camera rig can frame the glass. */
+  screenRef?: Ref<THREE.Object3D>;
 }
 
 function PlanetModel({
   modelKey,
   radius,
+  screen,
+  screenPower,
+  screenRef,
   onLoaded,
 }: {
   modelKey: Exclude<ModelKey, 'sun'>;
   radius: number;
+  screen?: ScreenConfig;
+  screenPower: ScreenPower;
+  screenRef?: Ref<THREE.Object3D>;
   onLoaded: (key: ModelKey) => void;
 }) {
   const { scene, scale, offset } = useCenteredModel(MODEL_URLS[modelKey], radius);
@@ -37,10 +55,19 @@ function PlanetModel({
     <group scale={scale}>
       <group position={offset}>
         <primitive object={scene} />
+        {screen && (
+          <group ref={screenRef} position={screen.position} rotation={[0, screen.yaw, 0]}>
+            <ComputerScreen config={screen} power={screenPower} />
+          </group>
+        )}
       </group>
     </group>
   );
 }
+
+const FACE_LAMBDA = 3;
+const worldPos = new THREE.Vector3();
+const toCamera = new THREE.Vector3();
 
 function PlanetSphere({
   config,
@@ -64,9 +91,20 @@ function PlanetSphere({
   );
 }
 
-export default function Planet({ config, interactive, showLabel, onSelect, onLoaded, groupRef }: PlanetProps) {
+export default function Planet({
+  config,
+  interactive,
+  showLabel,
+  orientation,
+  screenPower,
+  onSelect,
+  onLoaded,
+  groupRef,
+  screenRef,
+}: PlanetProps) {
   const bodyRef = useRef<THREE.Group>(null);
   const spinRef = useRef<THREE.Group>(null);
+  const anchorRef = useRef<THREE.Object3D | null>(null);
   const materialRef = useRef<THREE.MeshStandardMaterial>(null);
   const [hovered, setHovered] = useState(false);
   const glow = useMemo(() => (config.atmosphere ? getGlowTexture() : null), [config.atmosphere]);
@@ -80,8 +118,21 @@ export default function Planet({ config, interactive, showLabel, onSelect, onLoa
     };
   }, [highlight]);
 
-  useFrame((_, delta) => {
-    if (spinRef.current && config.spin) spinRef.current.rotation.y += delta * config.spin;
+  useFrame((state, delta) => {
+    const spin = spinRef.current;
+    const anchor = anchorRef.current;
+    if (spin && orientation === 'face' && config.screen && anchor) {
+      // Yaw so the glass normal points at the camera. Measured from the glass itself, not the
+      // planet center: the glass is off-axis, so aiming from the center would never settle.
+      anchor.getWorldPosition(worldPos);
+      toCamera.subVectors(state.camera.position, worldPos);
+      const target = Math.atan2(toCamera.x, toCamera.z) - config.screen.yaw;
+      const current = spin.rotation.y;
+      const diff = Math.atan2(Math.sin(target - current), Math.cos(target - current));
+      spin.rotation.y = THREE.MathUtils.damp(current, current + diff, FACE_LAMBDA, delta);
+    } else if (spin && orientation === 'spin' && config.spin) {
+      spin.rotation.y += delta * config.spin;
+    }
     if (bodyRef.current) {
       const s = THREE.MathUtils.damp(bodyRef.current.scale.x, highlight ? 1.12 : 1, 8, delta);
       bodyRef.current.scale.setScalar(s);
@@ -109,7 +160,18 @@ export default function Planet({ config, interactive, showLabel, onSelect, onLoa
         <group ref={spinRef}>
           {config.model ? (
             <Suspense fallback={<PlanetSphere config={config} />}>
-              <PlanetModel modelKey={config.model} radius={r} onLoaded={onLoaded} />
+              <PlanetModel
+                modelKey={config.model}
+                radius={r}
+                screen={config.screen}
+                screenPower={screenPower}
+                screenRef={(object) => {
+                  anchorRef.current = object;
+                  if (typeof screenRef === 'function') screenRef(object);
+                  else if (screenRef) screenRef.current = object;
+                }}
+                onLoaded={onLoaded}
+              />
             </Suspense>
           ) : (
             <PlanetSphere config={config} materialRef={materialRef} />

@@ -1,3 +1,4 @@
+import { FiArrowRight, FiArrowUpRight } from 'react-icons/fi';
 import { projects } from '@/data/projects';
 import styles from './panels.module.css';
 
@@ -24,13 +25,20 @@ export default function ProjectsPanel() {
                 </span>
               ))}
             </div>
-            <div className={styles.links}>
-              {project.links.map((link) => (
-                <a key={link.href} className={styles.link} href={link.href} target="_blank" rel="noopener noreferrer">
-                  {link.label}
-                </a>
-              ))}
-            </div>
+          </div>
+          {project.caseStudy && (
+            <a className={styles.caseStudy} href={project.caseStudy}>
+              Read case study
+              <FiArrowRight className={styles.linkIcon} aria-hidden="true" />
+            </a>
+          )}
+          <div className={styles.links}>
+            {project.links.map((link) => (
+              <a key={link.href} className={styles.link} href={link.href} target="_blank" rel="noopener noreferrer">
+                {link.label}
+                <FiArrowUpRight className={styles.linkIcon} aria-hidden="true" />
+              </a>
+            ))}
           </div>
         </article>
       ))}

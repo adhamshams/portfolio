@@ -5,8 +5,8 @@ export default function WorkPanel() {
   return (
     <>
       <h1 className={styles.title}>
-        <span className={styles.code}>WRK 076</span>
-        Work
+        <span className={styles.code}>EXP 076</span>
+        Professional Experience
       </h1>
       <ol className={styles.timeline}>
         {work.map((entry) => (

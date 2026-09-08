@@ -1,5 +1,6 @@
-export type PlanetId = 'projects' | 'about' | 'work' | 'xp';
-export type FocusId = 'overview' | 'sun' | PlanetId;
+export type PlanetId = 'projects' | 'about' | 'experience' | 'xp';
+/** `screen` is the close-up of the computer's CRT, where the 2025 portfolio runs. */
+export type FocusId = 'overview' | 'sun' | PlanetId | 'screen';
 export type Phase = 'loading' | 'intro' | 'idle' | 'flying';
 export type ModelKey = 'sun' | 'computer';
 
@@ -14,6 +15,25 @@ export const MODEL_URLS: Record<ModelKey, string> = {
   sun: '/sun.glb',
   computer: '/computer.glb',
 };
+
+/**
+ * Where the CRT glass sits inside a planet's GLB, in the model's own (unscaled, uncentered)
+ * frame. The embedded page is drawn on this rectangle and the camera frames it head-on.
+ */
+export interface ScreenConfig {
+  /** Center of the glass. */
+  position: [number, number, number];
+  /** Rotation about Y (radians) so the anchor's +Z is the glass normal. */
+  yaw: number;
+  /** Glass extents in model units. */
+  width: number;
+  height: number;
+  /** Fraction of the glass the picture fills; the rest reads as bezel and rounded CRT corners. */
+  inset: number;
+  /** CSS pixel size of the embedded page. Width must clear DESKTOP_GATE_QUERY. */
+  viewport: [number, number];
+  url: string;
+}
 
 export interface PlanetConfig {
   id: PlanetId;
@@ -40,6 +60,7 @@ export interface PlanetConfig {
   ring?: { inner: number; outer: number; color: string; tilt: number };
   atmosphere?: string;
   model?: Exclude<ModelKey, 'sun'>;
+  screen?: ScreenConfig;
   desktopOnly?: boolean;
 }
 
@@ -73,10 +94,10 @@ export const PLANETS: PlanetConfig[] = [
     atmosphere: '#4d8dff',
   },
   {
-    id: 'work',
-    label: 'Work',
-    nav: 'Work',
-    code: 'WRK 076',
+    id: 'experience',
+    label: 'Experience',
+    nav: 'Experience',
+    code: 'EXP 076',
     tone: '#4a4a4a',
     color: '#8a8a8a',
     radius: 4.0,
@@ -88,7 +109,7 @@ export const PLANETS: PlanetConfig[] = [
   },
   {
     id: 'xp',
-    label: 'Portfolio 2025',
+    label: '2025 Portfolio',
     nav: '2025',
     code: 'P25 098',
     tone: '#7a1116',
@@ -100,6 +121,16 @@ export const PLANETS: PlanetConfig[] = [
     spin: 0.25,
     atmosphere: '#5aa0ff',
     model: 'computer',
+    // Fitted to the Old_Computer_Glass_0 mesh in computer.glb: a flat plane turned ~10° about Y.
+    screen: {
+      position: [-2.622, 4.217, 1.984],
+      yaw: 0.1743,
+      width: 9.948,
+      height: 7.838,
+      inset: 0.94,
+      viewport: [1280, 1009],
+      url: '/user',
+    },
     desktopOnly: true,
   },
 ];
@@ -107,3 +138,9 @@ export const PLANETS: PlanetConfig[] = [
 export const PLANET_BY_ID: Record<PlanetId, PlanetConfig> = Object.fromEntries(
   PLANETS.map((p) => [p.id, p])
 ) as Record<PlanetId, PlanetConfig>;
+
+/** The planet a focus belongs to (`screen` lives on the computer), or null for the overview/sun. */
+export function planetOfFocus(focus: FocusId): PlanetId | null {
+  if (focus === 'screen') return 'xp';
+  return focus in PLANET_BY_ID ? (focus as PlanetId) : null;
+}

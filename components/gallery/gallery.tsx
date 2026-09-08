@@ -65,7 +65,7 @@ export default function About() {
   return (
     <div>
       <div className={styles.icon} onClick={() => setVisible(true)}>
-        <Image src={"/word.png"} alt="Logo" width={45} height={45} />
+        <Image loading="eager" src={"/word.png"} alt="Logo" width={45} height={45} />
         <h2>gallery.doc</h2>
       </div>
       {visible && (
@@ -78,7 +78,7 @@ export default function About() {
             onMouseDown={handleMouseDown}
             className={`${styles.nav} ${isDragging ? styles.grabbing : ""}`}
           >
-            <Image src={"/word.png"} alt="Logo" width={20} height={20} />
+            <Image loading="eager" src={"/word.png"} alt="Logo" width={20} height={20} />
             <h2 className={styles.title}>gallery.doc</h2>
             <div className={styles.close}
               onClick={(e) => {
@@ -89,7 +89,7 @@ export default function About() {
                 e.stopPropagation();
               }}
             >
-              <Image src={"/exit.webp"} alt="Close" width={25} height={25} />
+              <Image loading="eager" src={"/exit.webp"} alt="Close" width={25} height={25} />
             </div>
           </div>
           <div className={styles.canvas}>

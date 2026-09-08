@@ -9,31 +9,25 @@ export interface WorkEntry {
   todo?: boolean;
 }
 
-// TODO: replace these placeholders with real experience. Newest first.
+// Newest first.
 export const work: WorkEntry[] = [
   {
-    id: 'brew-buzz',
-    company: 'Brew Buzz Specialty Coffee',
-    role: 'Product Designer & Developer',
-    period: '2024 – Present',
+    id: 'nestle',
+    company: 'Nestlé',
+    role: 'E-Commerce Specialist',
+    period: 'May 2026 – Present',
+    summary: 'Recently joined the e-commerce team — more on this soon.',
+  },
+  {
+    id: 'botit',
+    company: 'Botit',
+    role: 'Full Stack Developer',
+    period: 'Jul 2025 – Apr 2026',
     summary:
-      'Designed and shipped the ordering, loyalty and gift-card app on iOS and Android, plus the brand website.',
-    bullets: ['React Native + Firebase mobile app', 'Next.js landing page', 'Over 100K EGP revenue, 500+ monthly users'],
-  },
-  {
-    id: 'todo-1',
-    company: 'Company name',
-    role: 'Role title',
-    period: 'YYYY – YYYY',
-    summary: 'One or two sentences about what you did and what it achieved.',
-    todo: true,
-  },
-  {
-    id: 'todo-2',
-    company: 'University / earlier role',
-    role: 'Role title',
-    period: 'YYYY – YYYY',
-    summary: 'One or two sentences about what you did and what it achieved.',
-    todo: true,
+      'On the Tooling team, building the internal systems the campaign and language teams run on day to day.',
+    bullets: [
+      'Contributed to the Tooling team at Botit, developing internal systems with React, Express.js, and MongoDB to support promotional campaign management, including the Promotion Engine Dashboard for real-time performance monitoring and automated workflows.',
+      'Built a Language Panel using React and Node.js, integrated with Ollama and the OpenAI API, enabling the internal language team to manage multilingual content, streamline translation workflows, and generate AI-assisted copy.',
+    ],
   },
 ];

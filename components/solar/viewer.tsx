@@ -3,7 +3,8 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useProgress } from '@react-three/drei';
 import Loader from '@/components/loader';
-import { PLANET_BY_ID, type FocusId, type ModelKey, type Phase } from '@/data/planets';
+import { useMediaQuery } from '@/hooks/useMediaQuery';
+import { DESKTOP_GATE_QUERY, PLANET_BY_ID, planetOfFocus, type FocusId, type ModelKey, type Phase } from '@/data/planets';
 import SolarScene from './solar-scene';
 import SystemNav from './system-nav';
 import Hud from './hud';
@@ -13,6 +14,7 @@ import ProjectsPanel from './panels/projects-panel';
 import AboutPanel from './panels/about-panel';
 import WorkPanel from './panels/work-panel';
 import XpPanel from './panels/xp-panel';
+import type { ScreenPower } from './computer-screen';
 import styles from './solar.module.css';
 
 const TOTAL_MODELS = 2;
@@ -21,18 +23,30 @@ const LOADER_FADE_MS = 400;
 
 function parseFocusHash(hash: string): FocusId | null {
   const id = hash.replace(/^#/, '');
-  if (id === 'sun') return 'sun';
+  if (id === 'sun' || id === 'screen') return id;
   return id in PLANET_BY_ID ? (id as FocusId) : null;
 }
 
 const SUN_TONE = '#7a1116';
 
 function panelTone(focus: FocusId): string {
-  if (focus === 'sun' || focus === 'overview') return SUN_TONE;
-  return PLANET_BY_ID[focus].tone;
+  const planet = planetOfFocus(focus);
+  return planet ? PLANET_BY_ID[planet].tone : SUN_TONE;
 }
 
-function PanelContent({ focus, onBack }: { focus: FocusId; onBack: () => void }) {
+/**
+ * The computer's CRT: dark but loading while its panel is read, still dark during the pan to
+ * the screen, lit once the camera has settled on it, and off (with a collapse) everywhere else.
+ * Phones never boot it, so they never load the page either.
+ */
+function screenPowerFor(focus: FocusId, phase: Phase, canBoot: boolean): ScreenPower {
+  if (!canBoot) return 'off';
+  if (focus === 'screen') return phase === 'idle' ? 'on' : 'warming';
+  if (focus === 'xp' && phase === 'idle') return 'standby';
+  return 'off';
+}
+
+function PanelContent({ focus, onBoot }: { focus: FocusId; onBoot: () => void }) {
   switch (focus) {
     case 'sun':
       return <SunIntro />;
@@ -40,10 +54,10 @@ function PanelContent({ focus, onBack }: { focus: FocusId; onBack: () => void })
       return <ProjectsPanel />;
     case 'about':
       return <AboutPanel />;
-    case 'work':
+    case 'experience':
       return <WorkPanel />;
     case 'xp':
-      return <XpPanel onBack={onBack} />;
+      return <XpPanel onBoot={onBoot} />;
     default:
       return null;
   }
@@ -59,6 +73,7 @@ export default function SolarViewer() {
   const mountedAt = useRef<number | null>(null);
   const pendingHashFocus = useRef<FocusId | null>(null);
   const { progress, active } = useProgress();
+  const isSmall = useMediaQuery(DESKTOP_GATE_QUERY);
 
   useEffect(() => {
     mountedAt.current = performance.now();
@@ -92,14 +107,18 @@ export default function SolarViewer() {
 
   const select = useCallback(
     (id: FocusId) => {
-      if (phase !== 'idle' || id === focus) return;
-      setFocus(id);
+      // The XP desktop is mouse-and-keyboard only; a phone stops at the computer's panel.
+      const target = id === 'screen' && isSmall ? 'xp' : id;
+      if (phase !== 'idle' || target === focus) return;
+      setFocus(target);
       setPhase('flying');
     },
-    [phase, focus]
+    [phase, focus, isSmall]
   );
 
   const back = useCallback(() => select('overview'), [select]);
+  const boot = useCallback(() => select('screen'), [select]);
+  const powerOff = useCallback(() => select('xp'), [select]);
   const handleArrive = useCallback(() => setPhase('idle'), []);
 
   // Deep link (#projects, #about, ...): fly there once the intro has landed.
@@ -118,15 +137,19 @@ export default function SolarViewer() {
     window.history.replaceState(null, '', url);
   }, [focus, phase]);
 
+  // Escape steps out one level: screen -> computer, anything else -> system.
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') back();
+      if (event.key !== 'Escape') return;
+      if (focus === 'screen') powerOff();
+      else back();
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [back]);
+  }, [focus, back, powerOff]);
 
-  const panelOpen = phase === 'idle' && focus !== 'overview';
+  const onScreen = focus === 'screen';
+  const panelOpen = phase === 'idle' && focus !== 'overview' && !onScreen;
   // While the panel fades out (phase is already 'flying'), keep showing what was open.
   const panelFocus = phase === 'idle' ? focus : lastIdleFocus;
   const displayProgress = allLoaded ? 100 : Math.min(progress, 99);
@@ -137,15 +160,37 @@ export default function SolarViewer() {
         focus={focus}
         phase={phase}
         orbitTime={orbitTime}
+        screenPower={screenPowerFor(focus, phase, !isSmall)}
         onSelect={select}
         onLoaded={handleLoaded}
         onArrive={handleArrive}
       />
       <Hud visible={phase === 'idle' && focus === 'overview'} />
-      <PlanetPanel open={panelOpen} tone={panelTone(panelFocus)} onBack={back}>
-        {panelFocus !== 'overview' && <PanelContent key={panelFocus} focus={panelFocus} onBack={back} />}
+      <PlanetPanel open={panelOpen} tone={panelTone(panelFocus)}>
+        {panelFocus !== 'overview' && <PanelContent key={panelFocus} focus={panelFocus} onBoot={boot} />}
       </PlanetPanel>
-      <SystemNav focus={focus} enabled={phase === 'idle'} visible={phase === 'idle' || phase === 'flying'} onSelect={select} />
+      <button
+        type="button"
+        className={`${styles.cornerButton} ${panelOpen ? styles.cornerButtonVisible : ''}`}
+        tabIndex={panelOpen ? 0 : -1}
+        onClick={back}
+      >
+        ◄ Back to system
+      </button>
+      <button
+        type="button"
+        className={`${styles.cornerButton} ${onScreen && phase === 'idle' ? styles.cornerButtonVisible : ''}`}
+        tabIndex={onScreen && phase === 'idle' ? 0 : -1}
+        onClick={powerOff}
+      >
+        ◄ Back
+      </button>
+      <SystemNav
+        focus={focus}
+        enabled={phase === 'idle'}
+        visible={(phase === 'idle' || phase === 'flying') && !onScreen}
+        onSelect={select}
+      />
       {showLoader && <Loader loaded={loadedModels} progress={displayProgress} hiding={phase !== 'loading'} />}
     </div>
   );

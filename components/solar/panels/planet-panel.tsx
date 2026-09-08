@@ -7,14 +7,13 @@ interface PlanetPanelProps {
   open: boolean;
   /** Header/tile color for the content inside (exposed as the --tone CSS variable). */
   tone?: string;
-  onBack: () => void;
   children: ReactNode;
 }
 
 const FADE_MS = 500;
 
 /** Side panel (desktop) / bottom sheet (portrait) that fades in when open and fades out before unmounting. */
-export default function PlanetPanel({ open, tone, onBack, children }: PlanetPanelProps) {
+export default function PlanetPanel({ open, tone, children }: PlanetPanelProps) {
   const [mounted, setMounted] = useState(open);
   const [closing, setClosing] = useState(false);
 
@@ -40,9 +39,6 @@ export default function PlanetPanel({ open, tone, onBack, children }: PlanetPane
       style={{ '--tone': tone ?? 'var(--hal-red-dark)' } as CSSProperties}
       aria-live="polite"
     >
-      <button type="button" className={styles.back} onClick={onBack}>
-        ◄ Back to system
-      </button>
       <div className={styles.content}>{children}</div>
     </aside>
   );

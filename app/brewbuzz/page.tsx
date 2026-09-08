@@ -22,7 +22,7 @@ export default function BrewBuzz() {
 //         <div className={styles.page}>
 //             <div className={styles.header}>
 //                 <a href="/desktop">
-//                     <Image
+//                     <Image loading="eager"
 //                         src="/back.webp"
 //                         alt="Back Button"
 //                         width={40}

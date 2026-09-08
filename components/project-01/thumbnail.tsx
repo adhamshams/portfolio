@@ -70,7 +70,7 @@ export default function Thumbnail({ onClose }: { onClose: () => void }) {
                 onMouseDown={handleMouseDown}
                 className={`${styles.nav} ${isDragging ? styles.grabbing : ""}`}
             >
-                <Image src={"/image.webp"} alt="Logo" width={20} height={20} />
+                <Image loading="eager" src={"/image.webp"} alt="Logo" width={20} height={20} />
                 <h2 className={styles.title}>thumbnail.png</h2>
                 <div className={styles.close}
                     onClick={(e) => {
@@ -81,7 +81,7 @@ export default function Thumbnail({ onClose }: { onClose: () => void }) {
                         e.stopPropagation();
                     }}
                 >
-                    <Image src={"/exit.webp"} alt="Close" width={25} height={25} />
+                    <Image loading="eager" src={"/exit.webp"} alt="Close" width={25} height={25} />
                 </div>
             </div>
             <div className={styles.canvas}>
