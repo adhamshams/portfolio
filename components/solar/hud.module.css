@@ -40,7 +40,7 @@
 
 .box {
     border: 1px solid var(--hal-line);
-    background: #000;
+    background: var(--hal-black);
     padding: 9px 12px;
     font-size: 7px;
     letter-spacing: 0.16em;

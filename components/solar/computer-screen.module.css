@@ -20,15 +20,14 @@
     pointer-events: auto;
 }
 
-/* The CRT picture */
+/* The page as it sits on the monitor glass */
 .screen {
     position: relative;
     overflow: hidden;
     background: #000;
     border-radius: 3.5% / 4.5%;
     opacity: 0;
-    transform-origin: center;
-    will-change: transform, filter, opacity;
+    will-change: opacity;
 }
 
 .frame {
@@ -39,64 +38,31 @@
     background: #000;
 }
 
-/* Faint scanlines and a vignette so the page reads as a lit tube, not a sticker */
-.tube {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background:
-        radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.35) 100%),
-        repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.14) 0px, rgba(0, 0, 0, 0.14) 1px, rgba(0, 0, 0, 0) 1px, rgba(0, 0, 0, 0) 3px);
-}
-
 .on {
-    animation: crtOn 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+    animation: screenIn 0.45s ease-out forwards;
 }
 
 .off {
-    animation: crtOff 0.5s ease-in forwards;
+    animation: screenOut 0.35s ease-in forwards;
     pointer-events: none;
 }
 
-@keyframes crtOn {
-    0% {
+@keyframes screenIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
         opacity: 1;
-        transform: scale(0.15, 0.003);
-        filter: brightness(12) contrast(2);
-    }
-
-    30% {
-        transform: scale(1, 0.003);
-        filter: brightness(9) contrast(2);
-    }
-
-    60% {
-        transform: scale(1, 1);
-        filter: brightness(2.4) contrast(1.4);
-    }
-
-    100% {
-        opacity: 1;
-        transform: scale(1, 1);
-        filter: brightness(1) contrast(1);
     }
 }
 
-@keyframes crtOff {
-    0% {
+@keyframes screenOut {
+    from {
         opacity: 1;
-        transform: scale(1, 1);
-        filter: brightness(1);
     }
 
-    45% {
-        transform: scale(1, 0.003);
-        filter: brightness(8);
-    }
-
-    100% {
+    to {
         opacity: 0;
-        transform: scale(0, 0.003);
-        filter: brightness(10);
     }
 }

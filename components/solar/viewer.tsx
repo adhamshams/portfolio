@@ -165,6 +165,7 @@ export default function SolarViewer() {
         onLoaded={handleLoaded}
         onArrive={handleArrive}
       />
+      <div className={styles.vignette} aria-hidden="true" />
       <Hud visible={phase === 'idle' && focus === 'overview'} />
       <PlanetPanel open={panelOpen} tone={panelTone(panelFocus)}>
         {panelFocus !== 'overview' && <PanelContent key={panelFocus} focus={panelFocus} onBoot={boot} />}
