@@ -1,4 +1,4 @@
-export type PlanetId = 'projects' | 'about' | 'experience' | 'xp';
+export type PlanetId = 'projects' | 'blog' | 'experience' | 'xp';
 /** `screen` is the close-up of the computer's CRT, where the 2025 portfolio runs. */
 export type FocusId = 'overview' | 'sun' | PlanetId | 'screen';
 export type Phase = 'loading' | 'intro' | 'idle' | 'flying';
@@ -80,10 +80,10 @@ export const PLANETS: PlanetConfig[] = [
     ring: { inner: 1.5, outer: 2.2, color: '#d6d6d6', tilt: 0.35 },
   },
   {
-    id: 'about',
-    label: 'About',
-    nav: 'About',
-    code: 'ABT 056',
+    id: 'blog',
+    label: 'Blog',
+    nav: 'Blog',
+    code: 'BLG 056',
     tone: '#1e5fe0',
     color: '#2a6be0',
     radius: 3.6,

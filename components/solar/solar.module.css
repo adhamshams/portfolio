@@ -11,8 +11,8 @@
     --font-display: var(--font-michroma), 'Eurostile', 'Michroma', 'Helvetica Neue', sans-serif;
     --font-mono: var(--font-ibm-plex-mono), 'IBM Plex Mono', monospace;
 
-    /* Panel offset from the viewport edge and its inner top padding. The corner tile adds the
-       two together so its top lines up with the panel's first tile. */
+    /* Panel offset from the viewport edge and its inner top padding. The screen's corner tile
+       adds the two together so its top lines up with a panel's first tile. */
     --panel-inset: 1.5rem;
     --panel-pad-top: 1.75rem;
 
@@ -35,8 +35,8 @@
     z-index: 0;
     pointer-events: none;
     background:
-        radial-gradient(ellipse 72% 64% at 50% 48%, rgba(0, 0, 0, 0) 60%, rgba(150, 96, 20, 0.19) 100%),
-        linear-gradient(180deg, rgba(160, 108, 28, 0.07) 0%, rgba(0, 0, 0, 0) 26%, rgba(0, 0, 0, 0) 74%, rgba(160, 108, 28, 0.07) 100%);
+        radial-gradient(ellipse 72% 64% at 50% 48%, rgba(0, 0, 0, 0) 60%, rgba(150, 108, 56, 0.1) 100%),
+        linear-gradient(180deg, rgba(160, 120, 62, 0.04) 0%, rgba(0, 0, 0, 0) 26%, rgba(0, 0, 0, 0) 74%, rgba(160, 120, 62, 0.04) 100%);
     mix-blend-mode: screen;
 }
 
@@ -59,6 +59,11 @@
     pointer-events: none;
     transition: opacity 0.5s ease, background-color 0.2s ease, color 0.2s ease;
     -webkit-tap-highlight-color: transparent;
+}
+
+/* The panel's own tile sits level with the top edge of the panel it belongs to. */
+.cornerButton.panelBack {
+    top: var(--panel-inset);
 }
 
 .cornerButton.cornerButtonVisible {
@@ -104,6 +109,16 @@
 
 .label:focus-visible {
     outline: none;
+}
+
+/* Portrait sits the panel's own back tile against its top edge, sharing the sheet's left inset.
+   --panel-height is measured, since the sheet is only as tall as its content. */
+@media (orientation: portrait) {
+    .cornerButton.panelBack {
+        top: auto;
+        left: 0.75rem;
+        bottom: calc(var(--panel-height, 50dvh) + 0.75rem + env(safe-area-inset-bottom, 0px) + 8px);
+    }
 }
 
 @media (max-width: 768px) {

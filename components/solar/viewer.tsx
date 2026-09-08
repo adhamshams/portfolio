@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState, type CSSProperties } from 'react';
 import { useProgress } from '@react-three/drei';
 import Loader from '@/components/loader';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
@@ -11,7 +11,7 @@ import Hud from './hud';
 import PlanetPanel from './panels/planet-panel';
 import SunIntro from './panels/sun-intro';
 import ProjectsPanel from './panels/projects-panel';
-import AboutPanel from './panels/about-panel';
+import BlogPanel from './panels/blog-panel';
 import WorkPanel from './panels/work-panel';
 import XpPanel from './panels/xp-panel';
 import type { ScreenPower } from './computer-screen';
@@ -52,8 +52,8 @@ function PanelContent({ focus, onBoot }: { focus: FocusId; onBoot: () => void })
       return <SunIntro />;
     case 'projects':
       return <ProjectsPanel />;
-    case 'about':
-      return <AboutPanel />;
+    case 'blog':
+      return <BlogPanel />;
     case 'experience':
       return <WorkPanel />;
     case 'xp':
@@ -69,6 +69,7 @@ export default function SolarViewer() {
   const [lastIdleFocus, setLastIdleFocus] = useState<FocusId>('overview');
   const [loadedModels, setLoadedModels] = useState<ReadonlySet<ModelKey>>(() => new Set());
   const [showLoader, setShowLoader] = useState(true);
+  const [panelHeight, setPanelHeight] = useState(0);
   const orbitTime = useRef(0);
   const mountedAt = useRef<number | null>(null);
   const pendingHashFocus = useRef<FocusId | null>(null);
@@ -121,7 +122,7 @@ export default function SolarViewer() {
   const powerOff = useCallback(() => select('xp'), [select]);
   const handleArrive = useCallback(() => setPhase('idle'), []);
 
-  // Deep link (#projects, #about, ...): fly there once the intro has landed.
+  // Deep link (#projects, #blog, ...): fly there once the intro has landed.
   useEffect(() => {
     if (phase !== 'idle') return;
     const target = pendingHashFocus.current;
@@ -155,7 +156,7 @@ export default function SolarViewer() {
   const displayProgress = allLoaded ? 100 : Math.min(progress, 99);
 
   return (
-    <div className={styles.viewer}>
+    <div className={styles.viewer} style={{ '--panel-height': `${panelHeight}px` } as CSSProperties}>
       <SolarScene
         focus={focus}
         phase={phase}
@@ -167,12 +168,12 @@ export default function SolarViewer() {
       />
       <div className={styles.vignette} aria-hidden="true" />
       <Hud visible={phase === 'idle' && focus === 'overview'} />
-      <PlanetPanel open={panelOpen} tone={panelTone(panelFocus)}>
+      <PlanetPanel open={panelOpen} tone={panelTone(panelFocus)} onHeight={setPanelHeight}>
         {panelFocus !== 'overview' && <PanelContent key={panelFocus} focus={panelFocus} onBoot={boot} />}
       </PlanetPanel>
       <button
         type="button"
-        className={`${styles.cornerButton} ${panelOpen ? styles.cornerButtonVisible : ''}`}
+        className={`${styles.cornerButton} ${styles.panelBack} ${panelOpen ? styles.cornerButtonVisible : ''}`}
         tabIndex={panelOpen ? 0 : -1}
         onClick={back}
       >

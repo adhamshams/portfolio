@@ -13,7 +13,7 @@ export const projects: Project[] = [
   {
     id: 'brew-buzz',
     title: 'Brew Buzz Specialty Coffee',
-    role: 'UI/UX design, mobile dev, web dev, internal tooling',
+    role: 'UI/UX design, mobile dev, web dev',
     summary:
       'A specialty coffee shop in Cairo translated into pixels. A cross-platform React Native ordering and delivery app with loyalty rewards, wallet, promo codes and gift cards, wired to Paymob, Foodics and SMSMISR for secure payments, POS synchronization and branded OTP flows, driving 150K+ EGP in revenue and 500+ monthly users. Alongside it: a fleet app for drivers, an SEO-friendly React marketing site on a custom domain, and Command Center, an internal admin dashboard in React, TypeScript and Firebase with thermal receipt printing, Foodics sync, real-time order tracking, promo codes, loyalty challenges, push and SMS broadcasts and map-based delivery zones, all gated by role-based access.',
     stack: ['React Native', 'React.js', 'TypeScript', 'Firebase', 'Paymob', 'Foodics'],
@@ -38,7 +38,7 @@ export const projects: Project[] = [
     role: 'Design & front-end development',
     summary:
       "Lightship's quadlingual marketing site — English, right-to-left Arabic, German and Italian — built in Next.js 16, React 19 and TypeScript on a custom design system and i18n layer, with GSAP scroll-driven animation and multi-step request forms running on serverless API routes.",
-    stack: ['Next.js', 'React.js', 'TypeScript', 'GSAP'],
+    stack: ['Next.js', 'TypeScript', 'GSAP'],
     links: [{ label: 'lightship-eg.com', href: 'https://lightship-eg.com' }],
   },
 ];

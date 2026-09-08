@@ -23,11 +23,9 @@
     opacity: 0.8;
 }
 
-/* Thin white-bordered readout box */
+/* Readout block: the panel's own frame carries the outline, so the text just sits under its tile */
 .box {
-    border: 1px solid var(--hal-line);
-    background: var(--hal-black);
-    padding: 16px 18px;
+    padding: 4px 0 2px;
     margin-bottom: 8px;
 }
 
@@ -75,7 +73,7 @@
     outline: none;
 }
 
-/* Project cards: a colored title tile over a bordered box, like the About panel */
+/* Project cards: a colored title tile over its write-up, like the About panel */
 .card {
     margin-bottom: 1.25rem;
 }
@@ -106,9 +104,7 @@
 }
 
 .cardBody {
-    border: 1px solid var(--hal-line);
-    background: var(--hal-black);
-    padding: 16px 18px;
+    padding: 4px 0 2px;
 }
 
 .chips {
@@ -199,19 +195,18 @@
     transform: translate(2px, -2px);
 }
 
-/* Experience timeline: stacked bordered readouts */
+/* Experience timeline: stacked readouts, separated by space alone */
 .timeline {
     list-style: none;
 }
 
 .entry {
-    border: 1px solid var(--hal-line);
-    padding: 14px 16px;
-    margin-bottom: 8px;
+    padding: 2px 0;
+    /* Without a frame the gap is what separates one post from the next. */
+    margin-bottom: 1.5rem;
 }
 
 .entry.entryTodo {
-    border-style: dashed;
     opacity: 0.75;
 }
 
@@ -246,10 +241,6 @@
     .title {
         font-size: 1.05rem;
         padding: 10px 14px;
-    }
-
-    .box {
-        padding: 12px 14px;
     }
 
     .paragraph {

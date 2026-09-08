@@ -43,9 +43,9 @@ export default function SolarScene({ focus, phase, orbitTime, screenPower, onSel
       gl={{ antialias: true, powerPreference: 'high-performance' }}
       camera={{ fov: 50, near: 0.5, far: 5000, position: [0, 0, 900] }}
     >
-      <ambientLight intensity={0.2} color="#ffcf8f" />
-      <hemisphereLight intensity={0.16} color="#ffb347" groundColor="#140f04" />
-      <CabinLight color="#ffab3d" intensity={0.32} />
+      <ambientLight intensity={0.2} color="#ffe4c8" />
+      <hemisphereLight intensity={0.16} color="#ffd7ac" groundColor="#140f04" />
+      <CabinLight color="#ffd0a0" intensity={0.3} />
       <Stars radius={2000} depth={500} count={isSmall ? 3000 : 7000} factor={4} saturation={0} fade={false} speed={1} />
       <SolarSystem
         focus={focus}
