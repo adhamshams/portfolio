@@ -79,6 +79,12 @@
     .nav {
         background: linear-gradient(180deg, rgba(9, 7, 1, 0) 0%, rgba(9, 7, 1, 0.92) 40%);
     }
+
+    /* A focused body needs the whole screen here, so the bar steps aside with the same fade. */
+    .nav.focused {
+        opacity: 0;
+        pointer-events: none;
+    }
 }
 
 /* A phone cannot hold six tiles across, so wrap them into a 3 x 2 block instead of scrolling. */

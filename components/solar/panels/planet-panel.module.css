@@ -63,11 +63,13 @@
 @media (orientation: portrait) {
     .panel {
         top: auto;
-        bottom: var(--nav-space);
+        /* The nav bar hides behind a focused body here, so only the safe area is reserved. */
+        bottom: calc(0.75rem + env(safe-area-inset-bottom, 0px));
         left: 0.75rem;
         right: 0.75rem;
         width: auto;
-        max-height: 55dvh;
+        /* Sits in the bottom half so the planet above it stays clear. */
+        max-height: 50dvh;
         padding: 1rem;
         background: rgba(9, 7, 1, 0.92);
     }

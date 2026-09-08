@@ -20,8 +20,13 @@ const ITEMS: { id: FocusId; name: string; code: string; tile: string }[] = [
 export default function SystemNav({ focus, enabled, visible, onSelect }: SystemNavProps) {
   // The screen close-up belongs to the computer's tile.
   const pressed: FocusId = planetOfFocus(focus) ?? focus;
+  // Portrait hides the bar once a body is focused; the corner button is the way back.
+  const focused = focus !== 'overview';
   return (
-    <nav className={`${styles.nav} ${visible ? styles.visible : ''}`} aria-label="Solar system">
+    <nav
+      className={`${styles.nav} ${visible ? styles.visible : ''} ${focused ? styles.focused : ''}`}
+      aria-label="Solar system"
+    >
       {ITEMS.map((item) => (
         <button
           key={item.id}
