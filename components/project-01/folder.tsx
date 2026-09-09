@@ -128,7 +128,7 @@ export default function BrewBuzz() {
               }}
             >
               <Image loading="eager" src={"/phone.webp"} alt="Logo" width={45} height={45} />
-              <p>ios app</p>
+              <p>customer app (ios)</p>
             </a>
             <a href="https://play.google.com/store/apps/details?id=com.adhamshams.brewbuzzcoffee" target="_blank" rel="noopener noreferrer" className={styles.subIcon}
               onClick={(e) => {
@@ -139,7 +139,7 @@ export default function BrewBuzz() {
               }}
             >
               <Image loading="eager" src={"/phone.webp"} alt="Logo" width={45} height={45} />
-              <p>android app</p>
+              <p>customer app (android)</p>
             </a>
             <a href="https://brewbuzzcoffee.com" target="_blank" rel="noopener noreferrer" className={styles.subIcon}
               onClick={(e) => {

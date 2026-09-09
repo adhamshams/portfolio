@@ -19,9 +19,9 @@ export const projects: Project[] = [
     stack: ['React Native', 'React.js', 'TypeScript', 'Firebase', 'Paymob', 'Foodics'],
     caseStudy: '/brewbuzz',
     links: [
-      { label: 'iOS App', href: 'https://apps.apple.com/eg/app/brew-buzz/id6738006550' },
+      { label: 'Customer App (iOS)', href: 'https://apps.apple.com/eg/app/brew-buzz/id6738006550' },
       {
-        label: 'Android App',
+        label: 'Customer App (Android)',
         href: 'https://play.google.com/store/apps/details?id=com.adhamshams.brewbuzzcoffee',
       },
       {
