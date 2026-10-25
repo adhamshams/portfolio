@@ -10,7 +10,7 @@ export default function Intro() {
         <div className={styles.message}>
           <p className={styles.title}>This page only works on a computer</p>
           <p>
-            My 2025 portfolio is a Windows XP style desktop that needs a mouse and a large screen.
+            My 2024 portfolio is a Windows XP style desktop that needs a mouse and a large screen.
             Open this link on a laptop or desktop computer to try it.
           </p>
           <Link href="/" className={styles.link}>

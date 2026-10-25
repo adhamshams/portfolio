@@ -127,7 +127,7 @@ export default function ComputerScreen({ config, power }: ComputerScreenProps) {
           style={{ width, height }}
         >
           <div className={`${styles.screen} ${state}`} style={{ width, height }}>
-            <iframe className={styles.frame} src={config.url} aria-label="2025 Portfolio" loading="eager" />
+            <iframe className={styles.frame} src={config.url} aria-label="2024 Portfolio" loading="eager" />
             <div className={styles.tube} aria-hidden="true" />
           </div>
         </div>

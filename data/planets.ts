@@ -1,5 +1,5 @@
 export type PlanetId = 'projects' | 'blog' | 'experience' | 'xp';
-/** `screen` is the close-up of the computer's CRT, where the 2025 portfolio runs. */
+/** `screen` is the close-up of the computer's CRT, where the 2024 portfolio runs. */
 export type FocusId = 'overview' | 'sun' | PlanetId | 'screen';
 export type Phase = 'loading' | 'intro' | 'idle' | 'flying';
 export type ModelKey = 'sun' | 'computer';
@@ -109,9 +109,9 @@ export const PLANETS: PlanetConfig[] = [
   },
   {
     id: 'xp',
-    label: '2025 Portfolio',
-    nav: '2025',
-    code: 'P25 098',
+    label: '2024 Portfolio',
+    nav: '2024',
+    code: 'P24 098',
     tone: '#7a1116',
     color: '#3a6ea5',
     radius: 3.6,
