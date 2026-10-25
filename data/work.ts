@@ -14,7 +14,7 @@ export const work: WorkEntry[] = [
   {
     id: 'nestle',
     company: 'Nestlé',
-    role: 'E-Commerce Specialist',
+    role: 'E-Commerce UX & Merchandising Specialist',
     period: 'May 2026 – Present',
     summary: 'Recently joined the e-commerce team — more on this soon.',
   },
