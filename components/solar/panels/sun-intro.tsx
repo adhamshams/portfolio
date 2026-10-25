@@ -1,6 +1,6 @@
 'use client';
 
-import { FiFileText, FiLinkedin, FiMail } from 'react-icons/fi';
+import { FiLinkedin, FiMail } from 'react-icons/fi';
 import { aboutParagraphs, contact } from '@/data/about';
 import { sunTexts } from '@/data/intro';
 import PanelText from './panel-text';
@@ -24,10 +24,6 @@ export default function SunIntro() {
         <a className={styles.link} href={contact.linkedin} target="_blank" rel="noopener noreferrer">
           <FiLinkedin className={styles.linkIcon} aria-hidden="true" />
           LinkedIn
-        </a>
-        <a className={styles.link} href={contact.resume} target="_blank" rel="noopener noreferrer">
-          <FiFileText className={styles.linkIcon} aria-hidden="true" />
-          Resume (PDF)
         </a>
       </div>
     </>

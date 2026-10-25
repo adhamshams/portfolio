@@ -7,5 +7,4 @@ export const aboutParagraphs: string[] = [
 export const contact = {
   email: 'hello@adhamshams.com',
   linkedin: 'https://www.linkedin.com/in/adhamshams',
-  resume: '/resume.pdf',
 };
