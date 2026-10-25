@@ -19,11 +19,14 @@ export default function XpPanel({ onBoot }: XpPanelProps) {
       <>
         <h1 className={styles.title}>
           <span className={styles.code}>P25 098</span>
-          This one needs a desktop
+          Open on a computer
         </h1>
         <div className={styles.box}>
           <p className={styles.paragraph}>
-            2025 Portfolio is the Windows XP desktop: draggable windows, Paint, Minesweeper. Mouse-and-keyboard territory, so come back on a bigger screen to boot it up.
+            My 2025 portfolio is a Windows XP style desktop with windows you drag around with a mouse. It doesn&apos;t work on phones or tablets.
+          </p>
+          <p className={styles.paragraph}>
+            To try it, visit this site on a laptop or desktop computer.
           </p>
         </div>
       </>
