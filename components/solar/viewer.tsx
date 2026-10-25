@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useRef, useState, type CSSProperties } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useProgress } from '@react-three/drei';
 import Loader from '@/components/loader';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
@@ -69,7 +69,6 @@ export default function SolarViewer() {
   const [lastIdleFocus, setLastIdleFocus] = useState<FocusId>('overview');
   const [loadedModels, setLoadedModels] = useState<ReadonlySet<ModelKey>>(() => new Set());
   const [showLoader, setShowLoader] = useState(true);
-  const [panelHeight, setPanelHeight] = useState(0);
   const orbitTime = useRef(0);
   const mountedAt = useRef<number | null>(null);
   const pendingHashFocus = useRef<FocusId | null>(null);
@@ -156,7 +155,7 @@ export default function SolarViewer() {
   const displayProgress = allLoaded ? 100 : Math.min(progress, 99);
 
   return (
-    <div className={styles.viewer} style={{ '--panel-height': `${panelHeight}px` } as CSSProperties}>
+    <div className={styles.viewer}>
       <SolarScene
         focus={focus}
         phase={phase}
@@ -169,7 +168,7 @@ export default function SolarViewer() {
       <div className={styles.edgeTop} aria-hidden="true" />
       <div className={styles.edgeBottom} aria-hidden="true" />
       <Hud visible={phase === 'idle' && focus === 'overview'} />
-      <PlanetPanel open={panelOpen} tone={panelTone(panelFocus)} onHeight={setPanelHeight}>
+      <PlanetPanel open={panelOpen} tone={panelTone(panelFocus)}>
         {panelFocus !== 'overview' && <PanelContent key={panelFocus} focus={panelFocus} onBoot={boot} />}
       </PlanetPanel>
       <button
@@ -178,7 +177,7 @@ export default function SolarViewer() {
         tabIndex={panelOpen ? 0 : -1}
         onClick={back}
       >
-        ◄ Back to system
+        ◄ Back
       </button>
       <button
         type="button"

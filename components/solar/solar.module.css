@@ -125,13 +125,11 @@
     outline: none;
 }
 
-/* Portrait sits the panel's own back tile against its top edge, sharing the sheet's left inset.
-   --panel-height is measured, since the sheet is only as tall as its content. */
+/* Portrait tucks the panel's back tile into the top-left corner, on the sheet's side inset. */
 @media (orientation: portrait) {
     .cornerButton.panelBack {
-        top: auto;
+        top: calc(0.75rem + var(--safe-top));
         left: calc(0.75rem + var(--safe-left));
-        bottom: calc(var(--panel-height, 50dvh) + 0.75rem + var(--safe-bottom) + 8px);
     }
 }
 
