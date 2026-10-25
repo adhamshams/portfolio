@@ -3,6 +3,9 @@ body {
   max-width: 100vw;
   overflow-x: hidden;
   font-family: Tahoma;
+  /* Black behind everything, so Safari's toolbars and the rubber-band bounce never show white. */
+  background: #000;
+  overscroll-behavior: none;
 }
 
 body {

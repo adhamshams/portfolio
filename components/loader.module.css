@@ -5,11 +5,12 @@
     width: 100%;
     height: 100vh;
     height: 100dvh;
-    background-color: #090701;
+    background-color: #000;
     color: #fff;
     display: flex;
     flex-direction: column;
     padding: 32px;
+    padding: calc(32px + env(safe-area-inset-top, 0px)) calc(32px + env(safe-area-inset-right, 0px)) calc(32px + env(safe-area-inset-bottom, 0px)) calc(32px + env(safe-area-inset-left, 0px));
     z-index: 30;
     font-family: var(--font-ibm-plex-mono), 'IBM Plex Mono', monospace;
 }

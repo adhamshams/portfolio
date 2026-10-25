@@ -6,8 +6,7 @@
     --hal-grey: #5b5b5b;
     --hal-grey-light: #8a8a8a;
     --hal-line: rgba(255, 255, 255, 0.85);
-    /* Near-black with a warm bias, so no surface in the cabin reads as neutral black */
-    --hal-black: #090701;
+    --hal-black: #000;
     --font-display: var(--font-michroma), 'Eurostile', 'Michroma', 'Helvetica Neue', sans-serif;
     --font-mono: var(--font-ibm-plex-mono), 'IBM Plex Mono', monospace;
 
@@ -15,6 +14,12 @@
        adds the two together so its top lines up with a panel's first tile. */
     --panel-inset: 1.5rem;
     --panel-pad-top: 1.75rem;
+
+    /* Notch, status bar and home indicator space (viewport-fit=cover lets the page run under them). */
+    --safe-top: env(safe-area-inset-top, 0px);
+    --safe-right: env(safe-area-inset-right, 0px);
+    --safe-bottom: env(safe-area-inset-bottom, 0px);
+    --safe-left: env(safe-area-inset-left, 0px);
 
     position: relative;
     width: 100%;
@@ -27,24 +32,33 @@
     font-family: var(--font-mono);
 }
 
-/* Warm instrument glow bleeding in from the edges, after the cabin lighting in 2001.
-   z-index 0 keeps it over the scene but under the CRT page (1) and every UI layer. */
-.vignette {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
+/* Solid strips on the top and bottom edges, after joshpuckett.me/seamless-mobile-safari:
+   Safari tints its status bar and toolbar from fixed elements touching those edges, and needs
+   at least 5px showing to sample one. Pushed 7px off-screen, so 5px of the 12px remain. */
+.edgeTop,
+.edgeBottom {
+    position: fixed;
+    left: 0;
+    right: 0;
+    height: 12px;
+    z-index: 11;
+    background: var(--hal-black);
     pointer-events: none;
-    background:
-        radial-gradient(ellipse 72% 64% at 50% 48%, rgba(0, 0, 0, 0) 60%, rgba(150, 108, 56, 0.1) 100%),
-        linear-gradient(180deg, rgba(160, 120, 62, 0.04) 0%, rgba(0, 0, 0, 0) 26%, rgba(0, 0, 0, 0) 74%, rgba(160, 120, 62, 0.04) 100%);
-    mix-blend-mode: screen;
+}
+
+.edgeTop {
+    top: -7px;
+}
+
+.edgeBottom {
+    bottom: -7px;
 }
 
 /* Fixed corner tile: "back to system" over a panel, "power off" over the screen */
 .cornerButton {
     position: absolute;
-    top: calc(var(--panel-inset) + var(--panel-pad-top));
-    left: var(--panel-inset);
+    top: calc(var(--panel-inset) + var(--panel-pad-top) + var(--safe-top));
+    left: calc(var(--panel-inset) + var(--safe-left));
     z-index: 30;
     background: var(--hal-red);
     border: none;
@@ -63,7 +77,7 @@
 
 /* The panel's own tile sits level with the top edge of the panel it belongs to. */
 .cornerButton.panelBack {
-    top: var(--panel-inset);
+    top: calc(var(--panel-inset) + var(--safe-top));
 }
 
 .cornerButton.cornerButtonVisible {
@@ -116,8 +130,8 @@
 @media (orientation: portrait) {
     .cornerButton.panelBack {
         top: auto;
-        left: 0.75rem;
-        bottom: calc(var(--panel-height, 50dvh) + 0.75rem + env(safe-area-inset-bottom, 0px) + 8px);
+        left: calc(0.75rem + var(--safe-left));
+        bottom: calc(var(--panel-height, 50dvh) + 0.75rem + var(--safe-bottom) + 8px);
     }
 }
 

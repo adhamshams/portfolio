@@ -2,8 +2,8 @@
     /* Nav tile block at the bottom of the viewer: 12px + 46px + 14px, plus a 12px gap. */
     --nav-space: calc(84px + env(safe-area-inset-bottom, 0px));
     position: absolute;
-    top: var(--panel-inset);
-    right: var(--panel-inset);
+    top: calc(var(--panel-inset) + var(--safe-top));
+    right: calc(var(--panel-inset) + var(--safe-right));
     width: 50%;
     /* Fixed frame: top inset down to the nav tiles, whatever the copy inside amounts to. */
     bottom: var(--nav-space);
@@ -14,7 +14,7 @@
     overflow: hidden;
     color: #fff;
     font-family: var(--font-mono);
-    background: rgba(9, 7, 1, 0.88);
+    background: rgba(0, 0, 0, 0.88);
     /* Same hairline as the readout boxes inside it, so the panel reads as one of them. */
     border: 1px solid var(--hal-line);
     box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55);
@@ -69,14 +69,14 @@
     .panel {
         /* The nav bar hides behind a focused body here, so only the safe area is reserved. */
         bottom: calc(0.75rem + env(safe-area-inset-bottom, 0px));
-        left: 0.75rem;
-        right: 0.75rem;
+        left: calc(0.75rem + var(--safe-left));
+        right: calc(0.75rem + var(--safe-right));
         width: auto;
         /* Owns the bottom half; the planet above it stays clear. */
         top: auto;
         height: 50dvh;
         padding: 1rem;
-        background: rgba(9, 7, 1, 0.92);
+        background: rgba(0, 0, 0, 0.92);
     }
 
     .back {

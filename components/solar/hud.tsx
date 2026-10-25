@@ -20,16 +20,17 @@ export default function Hud({ visible }: { visible: boolean }) {
 
   return (
     <div className={`${styles.hud} ${visible ? styles.visible : ''}`} aria-hidden="true">
-      <div className={styles.tile}>
-        <span className={styles.code}>AS 9000</span>
+      <div className={styles.row}>
+        <span className={styles.code}>
+          <span className={`${styles.marker} ${styles.red}`} />
+          AS 9000
+        </span>
         <span className={styles.name}>Adham Shams</span>
       </div>
-      <div className={styles.box}>
-        Solar index · 1 star · 4 bodies
-        <br />
-        Select a body to proceed
+      <div className={`${styles.row} ${styles.clock}`}>
+        <span className={`${styles.marker} ${styles.blue}`} />
+        {clock}
       </div>
-      <div className={styles.clock}>{clock}</div>
     </div>
   );
 }
