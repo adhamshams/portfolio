@@ -2,7 +2,7 @@
 
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { DESKTOP_GATE_QUERY } from '@/data/planets';
-import { xpTexts } from '@/data/intro';
+import { xpMadeNote, xpTexts } from '@/data/intro';
 import PanelText from './panel-text';
 import styles from './panels.module.css';
 
@@ -28,6 +28,7 @@ export default function XpPanel({ onBoot }: XpPanelProps) {
           <p className={styles.paragraph}>
             To try it, visit this site on a laptop or desktop computer.
           </p>
+          <p className={styles.paragraph}>{xpMadeNote}</p>
         </div>
       </>
     );

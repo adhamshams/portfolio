@@ -21,6 +21,10 @@ export const sunTexts: TextLine[] = [
   },
 ];
 
+/** How the 2024 desktop was made; shown on its panel on every screen size. */
+export const xpMadeNote =
+  'Every line of it was coded by hand, with love, before any coding agents. My design process is so much different now, and this desktop is a snapshot of where it started.';
+
 export const xpTexts: TextLine[] = [
   {
     type: 'title',
@@ -40,5 +44,9 @@ export const xpTexts: TextLine[] = [
     type: 'paragraph',
     content:
       'It taught me that design lives in behavior as much as form, and that code can be a creative material.',
+  },
+  {
+    type: 'paragraph',
+    content: xpMadeNote,
   },
 ];
